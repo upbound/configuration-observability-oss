@@ -1,0 +1,59 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xosss.observe.platformref.upbound.io
+spec:
+  group: observe.platformref.upbound.io
+  names:
+    kind: XOss
+    plural: xosss
+  claimNames:
+    kind: Oss
+    plural: osss
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              parameters:
+                type: object
+                description: Monitoring configuration parameters.
+                properties:
+                  id:
+                    type: string
+                    description: ID of this Cluster to enable Monitoring with OSS Prometheus and Grafana
+                  operators:
+                    type: object
+                    description: Operators parameters.
+                    properties:
+                      prometheus:
+                        type: object
+                        description: Prometheus operator parameters.
+                        properties:
+                          version:
+                            type: string
+                            description: Prometheus chart version.
+                  deletionPolicy:
+                    description: When the Composition is deleleted, delelete the AWS resources. Defaults to Delete
+                    enum:
+                    - Delete
+                    - Orphan
+                    type: string
+                    default: Delete
+                required:
+                - id
+            required:
+            - parameters
+          status:
+            type: object
+            properties:
+              backup:
+                description: Freeform field containing status information for uxp-datadog
+                type: object
+                x-kubernetes-preserve-unknown-fields: true

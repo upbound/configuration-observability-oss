@@ -1,0 +1,28 @@
+apiVersion: meta.pkg.crossplane.io/v1alpha1
+kind: Configuration
+metadata:
+  name: platform-ref-observability
+  annotations:
+    meta.crossplane.io/maintainer: Upbound <support@upbound.io>
+    meta.crossplane.io/source: github.com/upbound/platform-ref-observability
+    meta.crossplane.io/license: Apache-2.0
+    meta.crossplane.io/description: |
+      This reference platform Configuration for Kubernetes and Data Services
+      is a starting point to observe your own internal cloud.
+
+    meta.crossplane.io/readme: |
+      This reference platform `Configuration` for Kubernetes and Data Services
+      is a starting point to observe your own internal cloud.
+      It provides platform APIs to provision observability software for
+      infer the platform performance from metrics, logs and traces.
+
+      To learn more checkout the [GitHub repo](https://github.com/upbound/platform-ref-observability/) that you can copy and customize to meet the exact
+      needs of your organization!
+spec:
+  crossplane:
+    version: ">=v1.13.2-0"
+  dependsOn:
+    - provider: xpkg.upbound.io/crossplane-contrib/provider-helm
+      version: ">=v0.15.0"
+    - provider: xpkg.upbound.io/crossplane-contrib/provider-kubernetes
+      version: ">=v0.9.0"

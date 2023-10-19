@@ -1,0 +1,13 @@
+apiVersion: observe.platformref.upbound.io/v1alpha1
+kind: Oss
+metadata:
+  name: oss
+  namespace: default
+  annotations:
+    uptest.upbound.io/pre-delete-hook: ../test/pre-delete-hook.sh
+spec:
+  parameters:
+    id: oss
+    operators:
+      prometheus:
+        version: "24.5.1"

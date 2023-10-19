@@ -1,0 +1,23 @@
+---
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: provider-helm-controller-config
+  namespace: upbound-system
+spec:
+  args:
+    - --debug
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: crossplane-contrib-provider-helm
+  namespace: upbound-system
+  annotations:
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "8080"
+    prometheus.io/scrape: "true"
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/provider-helm:v0.15.0
+  controllerConfigRef:
+    name: provider-helm-controller-config
