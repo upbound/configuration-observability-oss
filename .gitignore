@@ -19,3 +19,20 @@
 
 # Go workspace file
 go.work
+
+# Configuration Package Observabilty OSS
+/.cache
+/.work
+/_output
+cover.out
+/vendor
+/.vendor-new
+.DS_Store
+kubeconfig
+
+# ignore IDE folders
+.vscode/
+.idea/
+
+# packages
+*.xpkg%
