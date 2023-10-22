@@ -13,5 +13,6 @@ while [[ "${OPERATORS_NAMESPACE}" == "" ]]; do
     OPERATORS_NAMESPACE=$(kubectl get namespace|grep operators|awk '{print $1}')
 done
 
-kubectl apply -f config/prometheus/operators-config
-kubectl wait -n operators --for=condition=ready pod -l app.kubernetes.io/name=prometheus
+kubectl apply -f config/operators-config
+sleep 5
+kubectl wait -n operators --for=condition=Ready pod -l app.kubernetes.io/name=prometheus
