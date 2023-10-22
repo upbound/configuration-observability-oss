@@ -50,7 +50,17 @@ spec:
               name: kube-prometheus-stack
               repository: https://prometheus-community.github.io/helm-charts
               version: "41.4.1"
-            values: {}
+            values:
+              prometheus:
+                prometheusSpec:
+                  #serviceMonitorSelector:
+                  #  matchExpressions:
+                  #    - key: "release"
+                  #      operator: In
+                  #      values:
+                  #        - crossplane
+                  serviceMonitorSelectorNilUsesHelmValues: false
+
       patches:
         - type: PatchSet
           patchSetName: common

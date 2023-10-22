@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  serviceAccountName: prometheus
+  # match all namespaces with empty labels
+  # in serviceMonitorNamespaceSelector
+  # serviceMonitorNamespaceSelector: {}
+  serviceMonitorSelector:
+    matchLabels:
+      prometheus: app-monitoring
+  resources:
+    requests:
+      memory: 400Mi
+  enableAdminAPI: false
+

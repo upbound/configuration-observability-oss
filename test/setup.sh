@@ -56,6 +56,10 @@ while [[ "$CRDS_NOT_READY" == "true" ]]; do
 done
 echo_step_completed "CRDs are available"
 
+echo_info "Installing select AWS providers"
+kubectl apply -f ${SCRIPT_DIR}/providers/aws.yaml
+echo_step_completed "Installed select AWS providers"
+
 echo_info "Waiting for provider readiness ... this will take a moment"
 kubectl wait provider.pkg --all --for condition=Healthy --timeout=15m 2>/dev/null
 NUM_CRDS=$(kubectl get crds|wc -l)
@@ -82,3 +86,7 @@ echo_step_completed "Installed definition"
 echo_info "Installing composition"
 kubectl apply -f ${SCRIPT_DIR}/../package/oss/composition.yaml
 echo_step_completed "Installed composition"
+
+echo_info "Adding Crossplane provider endpoint scraping configuration"
+kubectl apply -f ${SCRIPT_DIR}/../config/prometheus/operator-config/
+echo_step_completed "Added Crossplane provider endpoint scraping configuration"

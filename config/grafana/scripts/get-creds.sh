@@ -1,13 +1,14 @@
 #!/bin/bash
 
-GRAFANA=$(kubectl -n operators get secret|grep grafana|awk '{print $1}')
+NAMESPACE="operators"
+GRAFANA=$(kubectl -n ${NAMESPACE} get secret|grep grafana|awk '{print $1}')
 USER=$(kubectl get secret \
-    --namespace operators \
+    --namespace ${NAMESPACE} \
     ${GRAFANA} \
     -o jsonpath="{.data.admin-user}" \
     | base64 --decode ; echo)
 PASSWORD=$(kubectl get secret \
-    --namespace operators \
+    --namespace ${NAMESPACE} \
     ${GRAFANA} \
     -o jsonpath="{.data.admin-password}" \
     | base64 --decode ; echo)
