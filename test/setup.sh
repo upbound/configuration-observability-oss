@@ -88,5 +88,5 @@ kubectl apply -f ${SCRIPT_DIR}/../package/oss/composition.yaml
 echo_step_completed "Installed composition"
 
 echo_info "Adding Crossplane provider endpoint scraping configuration"
-kubectl apply -f ${SCRIPT_DIR}/../config/prometheus/operator-config/
+kubectl apply -f ${SCRIPT_DIR}/../config/prometheus/operators-config/
 echo_step_completed "Added Crossplane provider endpoint scraping configuration"
