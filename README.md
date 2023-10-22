@@ -12,16 +12,15 @@ other configurations such as configuration-caas. See the
 additional configurations.
 
 ## Usage
-Run `make e2e` to exercise end to end tests for the observability
-integrations. Some may require an API key for specific backends.
+Run `bootstrap.sh` to create a cluster, install
+Prometheus operators, Grafana, run tests, and Crossplane and Provider service
+monitors for further exploration.
+
+You may run `make e2e` directly to exercise end to end tests
+for the observability integrations.
 
 The `_output` directory includes readily usable configuration packages
 after `make build` has been run.
-
-After tests have run and the cluster and initial requirements have
-been set up by `make e2e`, you can run `bootstrap.sh` to install
-Prometheus operators, Grafana, and Crossplane and Provider service
-monitors for further exloration.
 
 Use the following to forward localhost:9090 to the Prometheus pod.
 ```

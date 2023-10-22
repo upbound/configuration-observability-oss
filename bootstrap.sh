@@ -8,7 +8,3 @@ config/prometheus/scripts/make-provider-service.sh
 kubectl apply -f examples/oss.yaml
 sleep 15
 kubectl apply -f config/prometheus/operators-config
-
-
-echo kubectl -n port-forward <prometheus-pod> 9090
-echo curl http://localhost:9090/targets
