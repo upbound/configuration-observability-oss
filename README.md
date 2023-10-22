@@ -25,12 +25,26 @@ monitors for further exloration.
 
 Use the following to forward localhost:9090 to the Prometheus pod.
 ```
-kubectl -n operators port-forward <PROMETHEUS_POD_NAME> 9090
+PROMETHEUS_POD_NAME=$(k -n operators get pods|\
+    awk '{print $1}'|\
+    tail +2|\
+    grep prometheus-0)
+kubectl -n operators port-forward ${PROMETHEUS_POD_NAME} 9090
 ```
 
 Use the following to forward localhost:3000 to the Grafana pod.
 ```
-kubectl -n operators port-forward <GRAFANA_POD_NAME> 3000.
+GRAFANA_POD_NAME=$(k -n operators get pods|\
+    awk '{print $1}'|\
+    tail +2|\
+    grep grafana)
+kubectl -n operators port-forward ${GRAFANA_POD_NAME} 3000
+```
+
+Log in to Grafana at http://localhost:3000 with the credentials
+obtained from running the following.
+```
+scripts/get-creds.sh
 ```
 
 ## Community
