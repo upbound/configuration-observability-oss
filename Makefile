@@ -82,6 +82,6 @@ bootstrap: e2e
     	# 	OPERATOR_NAMESPACE_EXISTS=$(kubectl get namespace|grep operators)
 	# done
 
-	# kubectl apply -f config/operators-config
+	# kubectl apply -f config/operators
 
 .PHONY: uptest e2e

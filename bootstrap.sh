@@ -13,7 +13,7 @@ while [[ "${OPERATORS_NAMESPACE}" == "" ]]; do
     OPERATORS_NAMESPACE=$(kubectl get namespace|grep operators|awk '{print $1}')
 done
 
-kubectl apply -f config/operators-config
+kubectl apply -f config/operators
 
 PROMETHEUS_READY=""
 while [[ "${PROMETHEUS_READY}" == "" ]]; do
