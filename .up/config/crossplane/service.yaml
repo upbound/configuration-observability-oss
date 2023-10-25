@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: crossplane-rbac-manager
+  name: crossplane
   namespace: upbound-system
   labels:
-    app: crossplane-rbac-manager
+    app: crossplane
 spec:
   selector:
-    app: crossplane-rbac-manager
+    app: crossplane
   ports:
-  - name: web
+  - name: http-metrics
     port: 8080

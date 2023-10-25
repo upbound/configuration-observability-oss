@@ -57,7 +57,7 @@ done
 echo_step_completed "CRDs are available"
 
 echo_info "Installing select AWS providers"
-kubectl apply -f ${SCRIPT_DIR}/providers/aws.yaml
+kubectl apply -f ${SCRIPT_DIR}/provider/aws.yaml
 echo_step_completed "Installed select AWS providers"
 
 echo_info "Waiting for provider readiness ... this will take a moment"
@@ -87,6 +87,8 @@ echo_info "Installing composition"
 kubectl apply -f ${SCRIPT_DIR}/../package/oss/composition.yaml
 echo_step_completed "Installed composition"
 
-echo_info "Adding Crossplane provider endpoint scraping configuration"
-kubectl apply -f ${SCRIPT_DIR}/../config/operators/
-echo_step_completed "Added Crossplane provider endpoint scraping configuration"
+echo_info "Adding Crossplane and provider endpoint scraping configuration"
+kubectl apply -f ${SCRIPT_DIR}/../.up/config/operators/
+kubectl apply -f ${SCRIPT_DIR}/../.up/config/crossplane/
+kubectl apply -f ${SCRIPT_DIR}/../.up/config/crossplane-rbac-manager/
+echo_step_completed "Added Crossplane and provider endpoint scraping configuration"

@@ -2280,3 +2280,451 @@ spec:
   ports:
   - name: web
     port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-helm"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-helm"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-kubernetes"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-kubernetes"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-account"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-account"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-ec2"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-ec2"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-efs"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-efs"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-eks"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-eks"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-elasticache"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-elasticache"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-iam"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-iam"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-kms"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-kms"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-mq"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-mq"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-rds"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-rds"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-s3"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-s3"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-secretsmanager"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-secretsmanager"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-vpc"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-vpc"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-waf"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-waf"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-family-aws"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-family-aws"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-helm"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-helm"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-kubernetes"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-kubernetes"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-account"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-account"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-ec2"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-ec2"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-efs"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-efs"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-eks"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-eks"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-elasticache"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-elasticache"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-iam"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-iam"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-kms"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-kms"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-mq"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-mq"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-rds"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-rds"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-s3"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-s3"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-secretsmanager"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-secretsmanager"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-vpc"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-vpc"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-aws-waf"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-aws-waf"
+  ports:
+  - name: web
+    port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: "provider-family-aws"
+  namespace: upbound-system
+  labels:
+    app: providers
+spec:
+  selector:
+    pkg.crossplane.io/provider: "provider-family-aws"
+  ports:
+  - name: web
+    port: 8080

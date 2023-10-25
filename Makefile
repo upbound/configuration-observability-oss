@@ -18,6 +18,13 @@ UPTEST_VERSION = v0.2.1
 -include build/makelib/k8s_tools.mk
 # ====================================================================================
 # Setup XPKG
+
+# NOTE(jastang): Configurations deployed in Upbound do not currently follow
+# certain conventions such as the default examples root or package directory.
+XPKG_DIR = $(shell pwd)
+XPKG_EXAMPLES_DIR = .up/examples
+XPKG_IGNORE = .github/workflows/ci.yaml,.github/workflows/tag.yml,.github/workflows/e2e.yaml,init/*.yaml,.up/examples/upbound/*.yaml,.work/uptest-datasource.yaml,.up/config/operators/*.yaml,.up/config/provider/*.yaml,.up/config/*/*.yaml,test/provider/*.yaml,.up/examples/oss.yaml
+
 XPKG_REG_ORGS ?= xpkg.upbound.io/upbound
 # NOTE(hasheddan): skip promoting on xpkg.upbound.io as channel tags are
 # inferred.
@@ -62,7 +69,7 @@ build.init: $(UP)
 #   You can check the basic implementation here: https://github.com/upbound/uptest/blob/main/internal/templates/01-delete.yaml.tmpl.
 uptest: $(UPTEST) $(KUBECTL) $(KUTTL)
 	@$(INFO) running automated tests
-	@KUBECTL=$(KUBECTL) KUTTL=$(KUTTL) $(UPTEST) e2e examples/oss.yaml --setup-script=test/setup.sh --default-timeout=2400 || $(FAIL)
+	@KUBECTL=$(KUBECTL) KUTTL=$(KUTTL) $(UPTEST) e2e .up/examples/oss.yaml --setup-script=test/setup.sh --default-timeout=2400 || $(FAIL)
 	@$(OK) running automated tests
 
 # This target requires the following environment variables to be set:
@@ -75,13 +82,13 @@ bootstrap: e2e
 	# kubectl wait provider.pkg --all --for condition=Healthy --timeout=15m 2>/dev/null
 
 	# scripts/prometheus-make-provider-service.sh
-	# kubectl apply -f examples/oss.yaml
+	# kubectl apply -f .up/examples/oss.yaml
 
 	# OPERATORS_NAMESPACE=""
 	# while [[ "${OPERATORS_NAMESPACE}" == "" ]]; do
     	# 	OPERATOR_NAMESPACE_EXISTS=$(kubectl get namespace|grep operators)
 	# done
 
-	# kubectl apply -f config/operators
+	# kubectl apply -f .up/config/operators
 
 .PHONY: uptest e2e

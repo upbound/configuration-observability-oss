@@ -2,8 +2,9 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: crossplane
+  namespace: operators
   labels:
-    prometheus: app-monitoring
+    release: oss
 spec:
   namespaceSelector:
     any: true
@@ -11,4 +12,4 @@ spec:
     matchLabels:
       app: crossplane
   endpoints:
-  - port: web
+  - port: http-metrics

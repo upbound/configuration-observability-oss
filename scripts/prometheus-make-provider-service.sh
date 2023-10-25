@@ -14,8 +14,8 @@ kubectl -n ${NAMESPACE} get pods|\
 	    continue
 	fi
 	echo $LABEL
-	touch ${SCRIPT_DIR}/../config/prometheus/providers/service.yaml
-	cat <<EOF >> ${SCRIPT_DIR}/../config/prometheus/providers/service.yaml
+	touch ${SCRIPT_DIR}/../.up/config/providers/service.yaml
+	cat <<EOF >> ${SCRIPT_DIR}/../.up/config/providers/service.yaml
 ---
 kind: Service
 apiVersion: v1

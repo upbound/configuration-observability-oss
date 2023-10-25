@@ -4,7 +4,7 @@ metadata:
   name: oss
   namespace: default
   annotations:
-    uptest.upbound.io/pre-delete-hook: ../test/pre-delete-hook.sh
+    uptest.upbound.io/pre-delete-hook: ../../test/pre-delete-hook.sh
 spec:
   parameters:
     id: oss
