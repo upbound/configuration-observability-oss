@@ -23,7 +23,7 @@ UPTEST_VERSION = v0.2.1
 # certain conventions such as the default examples root or package directory.
 XPKG_DIR = $(shell pwd)
 XPKG_EXAMPLES_DIR = .up/examples
-XPKG_IGNORE = .github/workflows/ci.yaml,.github/workflows/tag.yml,.github/workflows/e2e.yaml,init/*.yaml,.up/examples/upbound/*.yaml,.work/uptest-datasource.yaml,.up/config/operators/*.yaml,.up/config/provider/*.yaml,.up/config/*/*.yaml,test/provider/*.yaml,.up/examples/oss.yaml
+XPKG_IGNORE = .github/workflows/ci.yaml,.github/workflows/tag.yml,.github/workflows/e2e.yaml,init/*.yaml,.work/uptest-datasource.yaml,.up/config/*/*.yaml,test/provider/*.yaml,.up/examples/oss.yaml
 
 XPKG_REG_ORGS ?= xpkg.upbound.io/upbound
 # NOTE(hasheddan): skip promoting on xpkg.upbound.io as channel tags are
@@ -75,20 +75,5 @@ uptest: $(UPTEST) $(KUBECTL) $(KUTTL)
 # This target requires the following environment variables to be set:
 # - UPTEST_CLOUD_CREDENTIALS, cloud credentials for the provider being tested, e.g. export UPTEST_CLOUD_CREDENTIALS=$(cat ~/.aws/credentials)
 e2e: build controlplane.up local.xpkg.deploy.configuration.$(PROJECT_NAME) uptest
-
-# TODO: Move the bootstrap to Make
-bootstrap: e2e
-	# kubectl apply -f test/provider/aws.yaml
-	# kubectl wait provider.pkg --all --for condition=Healthy --timeout=15m 2>/dev/null
-
-	# scripts/prometheus-make-provider-service.sh
-	# kubectl apply -f .up/examples/oss.yaml
-
-	# OPERATORS_NAMESPACE=""
-	# while [[ "${OPERATORS_NAMESPACE}" == "" ]]; do
-    	# 	OPERATOR_NAMESPACE_EXISTS=$(kubectl get namespace|grep operators)
-	# done
-
-	# kubectl apply -f .up/config/operators
 
 .PHONY: uptest e2e
