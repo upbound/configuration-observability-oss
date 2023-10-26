@@ -12,7 +12,7 @@ other configurations such as configuration-caas. See the
 additional configurations.
 
 ## Usage
-Run `bootstrap.sh` to create a cluster, install
+Run `scripts/bootstrap.sh` to create a cluster, install
 Prometheus operators, Grafana, run tests, and Crossplane and Provider service
 monitors for further exploration.
 
@@ -50,7 +50,10 @@ Load dashboards that are part of this configuration repository from
 the `dashboards` folder.  See example dashboards below.
 
 #### Crossplane MR Dashboard
-![Crossplane MR Dashboard](.up/dashboards/crossplane-mr-dashboard.png).
+![Crossplane MR Dashboard](.up/dashboards/crossplane-mr-dashboard.png)
+
+#### Controller Runtime Panels From Crossplane Dashboard
+![Controller Runtime Panels From Crossplane Dashboar](.up/dashboards/crossplane-controller-runtime-panels.png)
 
 ### Crossplane Observability In Action
 Now that your cluster has been bootstrapped, and that prometheus and grafana
