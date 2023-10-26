@@ -2,7 +2,7 @@
 apiVersion: kubernetes.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
-  name: platform-ref-oss
+  name: configuration-observability-oss
 spec:
   credentials:
     source: InjectedIdentity
@@ -10,7 +10,7 @@ spec:
 apiVersion: helm.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
-  name: platform-ref-oss
+  name: configuration-observability-oss
 spec:
   credentials:
     source: InjectedIdentity

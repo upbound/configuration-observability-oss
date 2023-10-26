@@ -1,10 +1,10 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: xosss.observe.platformref.upbound.io
+  name: xosss.observe.platform.upbound.io
 spec:
   compositeTypeRef:
-    apiVersion: observe.platformref.upbound.io/v1alpha1
+    apiVersion: observe.platform.upbound.io/v1alpha1
     kind: XOss
 
   patchSets:
@@ -18,7 +18,7 @@ spec:
           transforms:
             - type: string
               string:
-                fmt: "platform-ref-%s"
+                fmt: "configuration-observability-%s"
 
   resources:
     - name: namespace
@@ -66,7 +66,7 @@ spec:
           transforms:
             - type: string
               string:
-                fmt: "platform-ref-%s"
+                fmt: "configuration-observability-%s"
         # All Helm releases derive their labels and annotations from the claim.
         - fromFieldPath: metadata.labels
           toFieldPath: metadata.labels

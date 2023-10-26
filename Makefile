@@ -1,5 +1,5 @@
 # Project Setup
-PROJECT_NAME := platform-ref-observability
+PROJECT_NAME := configuration-observability-oss
 PROJECT_REPO := github.com/upbound/$(PROJECT_NAME)
 
 # NOTE(hasheddan): the platform is insignificant here as Configuration package

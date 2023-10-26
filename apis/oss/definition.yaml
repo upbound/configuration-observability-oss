@@ -1,9 +1,9 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xosss.observe.platformref.upbound.io
+  name: xosss.observe.platform.upbound.io
 spec:
-  group: observe.platformref.upbound.io
+  group: observe.platform.upbound.io
   names:
     kind: XOss
     plural: xosss

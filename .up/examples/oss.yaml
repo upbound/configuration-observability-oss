@@ -1,4 +1,4 @@
-apiVersion: observe.platformref.upbound.io/v1alpha1
+apiVersion: observe.platform.upbound.io/v1alpha1
 kind: Oss
 metadata:
   name: oss
