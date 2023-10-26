@@ -2,6 +2,8 @@
 
 SCRIPT_DIR=$( cd -- $( dirname -- "${BASH_SOURCE[0]}" ) &> /dev/null && pwd )
 NAMESPACE="upbound-system"
+
+touch ${SCRIPT_DIR}/../.up/config/providers/service.yaml
 kubectl -n ${NAMESPACE} get pods|\
     awk '{print $1}'|\
     tail -n +2|\
@@ -14,7 +16,6 @@ kubectl -n ${NAMESPACE} get pods|\
 	    continue
 	fi
 	echo $LABEL
-	touch ${SCRIPT_DIR}/../.up/config/providers/service.yaml
 	cat <<EOF >> ${SCRIPT_DIR}/../.up/config/providers/service.yaml
 ---
 kind: Service

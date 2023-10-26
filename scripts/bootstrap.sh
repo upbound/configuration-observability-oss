@@ -5,7 +5,7 @@ make e2e
 kubectl apply -f ${SCRIPT_DIR}/../test/provider/aws.yaml
 kubectl wait provider.pkg --all --for condition=Healthy --timeout=15m 2>/dev/null
 
-${SCRIPT_DIR}/prometheus-make-provider-service.sh
+#${SCRIPT_DIR}/prometheus-make-provider-service.sh
 kubectl apply -f ${SCRIPT_DIR}/../.up/examples/oss.yaml
 
 OPERATORS_NAMESPACE=""
