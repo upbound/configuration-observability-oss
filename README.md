@@ -47,7 +47,10 @@ scripts/get-creds.sh
 ```
 
 Load dashboards that are part of this configuration repository from
-the `dashboards` folder.
+the `dashboards` folder.  See example dashboards below.
+
+#### Crossplane MR Dashboard
+![Crossplane MR Dashboard](./dashboards/crossplane-mr-dashboard.png).
 
 ### Crossplane Observability In Action
 Now that your cluster has been bootstrapped, and that prometheus and grafana
