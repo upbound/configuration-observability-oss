@@ -1,5 +1,5 @@
 # configuration-observability-oss
-Platform Reference to Set Up Crossplane, Provider and Resource Observability
+Configuration to Set Up Crossplane, Provider and Resource Observability
 with open source software integrations such as Prometheus and Grafana.
 
 Observability is a measure of how well platform performance can be inferred
