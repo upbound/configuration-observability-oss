@@ -18,11 +18,21 @@ tests, the kind cluster will remain but the tests will
 clean up the operator namespace and delete the pods in it
 at the conclusion of the tests by default.
 
-Feel free to apply the resource claim as follows to re-create
+Apply the resource claim as follows to re-create
 the namespace, Prometheus, Grafana and dependencies for further
 exploration.
 ```
 kubectl apply -f .up/examples/oss.yaml
+```
+
+To load dashboards that are part of this configuration repository,
+please apply the following dashboard resource claims.
+```
+kubectl apply -f .up/examples/dashboards/folder-grafana.yaml
+kubectl apply -f .up/examples/dashboards/dashboard-grafana-crossplane-health.yaml
+kubectl apply -f .up/examples/dashboards/dashboard-grafana-crossplane-mr.yaml
+kubectl apply -f .up/examples/dashboards/dashboard-grafana-crossplane-resources-ttr.yaml
+kubectl apply -f .up/examples/dashboards/dashboard-grafana-crossplane-sli-metrics.yaml
 ```
 
 Use the following to forward localhost:9090 to the Prometheus pod.
@@ -49,8 +59,7 @@ obtained from running the following.
 scripts/grafana-get-creds.sh
 ```
 
-Load dashboards that are part of this configuration repository from
-the `dashboards` folder.  See example dashboards below.
+See example dashboards below.
 
 #### Crossplane MR Dashboard
 ![Crossplane MR Dashboard](.up/dashboards/crossplane-mr-dashboard.png)
