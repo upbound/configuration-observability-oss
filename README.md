@@ -62,10 +62,13 @@ scripts/grafana-get-creds.sh
 See example dashboards below.
 
 #### Crossplane MR Dashboard
-![Crossplane MR Dashboard](.up/dashboards/crossplane-mr-dashboard.png)
+![Crossplane MR Dashboard](.up/docs/media/crossplane-mr-dashboard.png)
 
 #### Controller Runtime Panels From Crossplane Dashboard
-![Controller Runtime Panels From Crossplane Dashboar](.up/dashboards/crossplane-controller-runtime-panels.png)
+![Controller Runtime Panels From Crossplane Dashboar](.up/docs/media/crossplane-controller-runtime-panels.png)
+
+#### Resources TTR Dashboard
+![Resources TTR Dashboard](.up/docs/media/resoures-ttr-dashboard.png)
 
 ### Crossplane Observability In Action
 Once your cluster has been bootstrapped, and that prometheus and grafana
