@@ -1,0 +1,7 @@
+apiVersion: oss.grafana.crossplane.io/v1alpha1
+kind: Folder
+metadata:
+  name: configuration-observability-oss
+spec:
+  forProvider:
+    title: 'Dashboards'

@@ -116,6 +116,8 @@ spec:
         - type: PatchSet
           patchSetName: common
         - fromFieldPath: spec.parameters.id
+          toFieldPath: metadata.name
+        - fromFieldPath: spec.parameters.id
           toFieldPath: metadata.annotations[crossplane.io/external-name]
           transforms:
             - type: string

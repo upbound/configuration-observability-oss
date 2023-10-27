@@ -65,6 +65,10 @@ echo_info "Installing select AWS providers"
 "${KUBECTL}" apply -f ${SCRIPT_DIR}/provider/provider-aws.yaml
 echo_step_completed "Installed select AWS providers"
 
+echo_info "Installing grafana providers"
+"${KUBECTL}" apply -f ${SCRIPT_DIR}/provider/provider-grafana.yaml
+echo_step_completed "Installed select grafana providers"
+
 echo_info "Waiting for provider readiness ... this will take a moment"
 "${KUBECTL}" wait provider.pkg --all --for condition=Healthy --timeout=15m 2>/dev/null
 NUM_CRDS=$("${KUBECTL}" get crds|wc -l)
@@ -72,6 +76,7 @@ echo_step_completed "Installed providers using ${NUM_CRDS} CRDs"
 
 echo_info "Installing providerconfigs"
 "${KUBECTL}" apply -f ${SCRIPT_DIR}/provider/providerconfigs.yaml
+"${KUBECTL}" apply -f ${SCRIPT_DIR}/provider/providerconfig-grafana.yaml
 echo_step_completed "Installed providerconfigs"
 
 echo_info "Adding provider-kubernetes Service Account permissions"
