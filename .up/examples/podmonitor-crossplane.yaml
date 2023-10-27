@@ -1,15 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: crossplane
-  namespace: operators
+  namespace: upbound-system
   labels:
-    release: oss
+    app: crossplane
 spec:
-  namespaceSelector:
-    any: true
   selector:
     matchLabels:
       app: crossplane
-  endpoints:
-  - port: http-metrics
+  podMetricsEndpoints:
+  - port: metrics

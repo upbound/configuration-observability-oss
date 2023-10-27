@@ -1,0 +1,14 @@
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: oss-controller-config
+  namespace: upbound-system
+spec:
+  metadata:
+    labels:
+      app: crossplane-providers
+  args:
+    - --debug
+  ports:
+    - name: http-prom
+      containerPort: 8080

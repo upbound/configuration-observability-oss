@@ -1,15 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: crossplane-rbac-manager
-  namespace: operators
+  namespace: upbound-system
   labels:
-    release: oss
+    app: crossplane-rbac-manager
 spec:
-  namespaceSelector:
-    any: true
   selector:
     matchLabels:
       app: crossplane-rbac-manager
-  endpoints:
-  - port: http-metrics
+  podMetricsEndpoints:
+  - port: metrics

@@ -10,4 +10,4 @@ spec:
     id: oss
     operators:
       prometheus:
-        version: "24.5.1"
+        version: "52.1.0"

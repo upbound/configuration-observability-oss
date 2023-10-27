@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -aeuo pipefail
 
 # setting up colors
 BLU='\033[0;104m'
@@ -41,7 +42,7 @@ check_if_exists_or_exit "kind"
 check_if_exists_or_exit "kubectl"
 
 echo_info "Waiting for Crossplane Pod readiness"
-kubectl wait -n ${CROSSPLANE_NAMESPACE} pods --all --for condition=Ready 2>/dev/null
+"${KUBECTL}" wait -n ${CROSSPLANE_NAMESPACE} pods --all --for condition=Ready 2>/dev/null
 echo_step_completed "Universal Crossplane is ready"
 
 CRDS_NOT_READY=true
@@ -56,39 +57,33 @@ while [[ "$CRDS_NOT_READY" == "true" ]]; do
 done
 echo_step_completed "CRDs are available"
 
+echo_info "Installing ControllerConfig"
+"${KUBECTL}" apply -f ${SCRIPT_DIR}/provider/controllerconfig.yaml
+echo_step_completed "Installed ControllerConfig"
+
 echo_info "Installing select AWS providers"
-kubectl apply -f ${SCRIPT_DIR}/provider/aws.yaml
+"${KUBECTL}" apply -f ${SCRIPT_DIR}/provider/provider-aws.yaml
 echo_step_completed "Installed select AWS providers"
 
 echo_info "Waiting for provider readiness ... this will take a moment"
-kubectl wait provider.pkg --all --for condition=Healthy --timeout=15m 2>/dev/null
-NUM_CRDS=$(kubectl get crds|wc -l)
+"${KUBECTL}" wait provider.pkg --all --for condition=Healthy --timeout=15m 2>/dev/null
+NUM_CRDS=$("${KUBECTL}" get crds|wc -l)
 echo_step_completed "Installed providers using ${NUM_CRDS} CRDs"
 
-echo_info "Installing provider-config-oss"
-kubectl apply -f ${SCRIPT_DIR}/provider/config-oss.yaml
-echo_step_completed "Installed provider-config-oss"
+echo_info "Installing providerconfigs"
+"${KUBECTL}" apply -f ${SCRIPT_DIR}/provider/providerconfigs.yaml
+echo_step_completed "Installed providerconfigs"
 
 echo_info "Adding provider-kubernetes Service Account permissions"
-SA=$(kubectl -n ${CROSSPLANE_NAMESPACE} get sa -o name|grep provider-kubernetes | sed -e "s|serviceaccount\/|${CROSSPLANE_NAMESPACE}:|g")
-kubectl create clusterrolebinding provider-kubernetes-admin-binding --clusterrole cluster-admin --serviceaccount="${SA}"
+SA=$("${KUBECTL}" -n ${CROSSPLANE_NAMESPACE} get sa -o name|grep provider-kubernetes | sed -e "s|serviceaccount\/|${CROSSPLANE_NAMESPACE}:|g")
+"${KUBECTL}" create clusterrolebinding provider-kubernetes-admin-binding --clusterrole cluster-admin --serviceaccount="${SA}"
 echo_step_completed "Added provider-kubernetes Service Account permissions"
 
 echo_info "Adding provider-helm Service Account permissions"
-SA=$(kubectl -n ${CROSSPLANE_NAMESPACE} get sa -o name|grep provider-helm | sed -e "s|serviceaccount\/|${CROSSPLANE_NAMESPACE}:|g")
-kubectl create clusterrolebinding provider-helm-admin-binding --clusterrole cluster-admin --serviceaccount="${SA}"
+SA=$("${KUBECTL}" -n ${CROSSPLANE_NAMESPACE} get sa -o name|grep provider-helm | sed -e "s|serviceaccount\/|${CROSSPLANE_NAMESPACE}:|g")
+"${KUBECTL}" create clusterrolebinding provider-helm-admin-binding --clusterrole cluster-admin --serviceaccount="${SA}"
 echo_step_completed "Added provider-helm Service Account permissions"
 
-echo_info "Installing definition"
-kubectl apply -f ${SCRIPT_DIR}/../package/oss/definition.yaml
-echo_step_completed "Installed definition"
-
-echo_info "Installing composition"
-kubectl apply -f ${SCRIPT_DIR}/../package/oss/composition.yaml
-echo_step_completed "Installed composition"
-
-echo_info "Adding Crossplane and provider endpoint scraping configuration"
-kubectl apply -f ${SCRIPT_DIR}/../.up/config/operators/
-kubectl apply -f ${SCRIPT_DIR}/../.up/config/crossplane/
-kubectl apply -f ${SCRIPT_DIR}/../.up/config/crossplane-rbac-manager/
-echo_step_completed "Added Crossplane and provider endpoint scraping configuration"
+# workaround because build module cannot set the metrics.enabled
+"${KUBECTL}" patch deployment crossplane -n upbound-system --type='json' -p='[{"op": "add", "path": "/spec/template/spec/containers/0/ports/-", "value": {"name": "metrics", "containerPort": 8080}}]'
+"${KUBECTL}" patch deployment crossplane-rbac-manager -n upbound-system --type='json' -p='[{"op": "add", "path": "/spec/template/spec/containers/0/ports", "value": [{"name": "metrics", "containerPort": 8080}]}]'

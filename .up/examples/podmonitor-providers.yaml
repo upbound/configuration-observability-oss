@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: crossplane-providers
+  namespace: upbound-system
+  labels:
+    app: crossplane-providers
+spec:
+  selector:
+    matchLabels:
+      app: crossplane-providers
+  podMetricsEndpoints:
+  - port: http-prom

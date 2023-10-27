@@ -49,7 +49,7 @@ spec:
               # Note that default values are overridden by the patches below.
               name: kube-prometheus-stack
               repository: https://prometheus-community.github.io/helm-charts
-              version: "41.4.1"
+              version: "52.1.0"
             values:
               prometheus:
                 prometheusSpec:
@@ -73,5 +73,5 @@ spec:
         - fromFieldPath: metadata.annotations
           toFieldPath: metadata.annotations
         # Derive the Prometheus operator image and tag from the claim.
-        - fromFieldPath: spec.operators.prometheus.version
+        - fromFieldPath: spec.parameters.operators.prometheus.version
           toFieldPath: spec.forProvider.chart.version
