@@ -23,7 +23,7 @@ UPTEST_VERSION = v0.6.1
 # certain conventions such as the default examples root or package directory.
 XPKG_DIR = $(shell pwd)
 XPKG_EXAMPLES_DIR = .up/examples
-XPKG_IGNORE = .github/workflows/ci.yaml,.github/workflows/tag.yml,.github/workflows/e2e.yaml,init/*.yaml,.work/uptest-datasource.yaml,.up/config/*/*.yaml,test/provider/*.yaml,.up/examples/oss.yaml
+XPKG_IGNORE = .github/workflows/ci.yaml,.github/workflows/tag.yml,.github/workflows/e2e.yaml,init/*.yaml,.work/uptest-datasource.yaml,.up/config/*/*.yaml,test/provider/*.yaml,.up/examples/*.yaml
 
 XPKG_REG_ORGS ?= xpkg.upbound.io/upbound
 # NOTE(hasheddan): skip promoting on xpkg.upbound.io as channel tags are
@@ -69,7 +69,7 @@ build.init: $(UP)
 #   You can check the basic implementation here: https://github.com/upbound/uptest/blob/main/internal/templates/01-delete.yaml.tmpl.
 uptest: $(UPTEST) $(KUBECTL) $(KUTTL)
 	@$(INFO) running automated tests
-	@KUBECTL=$(KUBECTL) KUTTL=$(KUTTL) $(UPTEST) e2e .up/examples/oss.yaml --setup-script=test/setup.sh --default-timeout=2400 || $(FAIL)
+	@KUBECTL=$(KUBECTL) KUTTL=$(KUTTL) $(UPTEST) e2e .up/examples/oss.yaml,.up/examples/folder-grafana.yaml,.up/examples/dashboard-grafana-crossplane-health.yaml,.up/examples/dashboard-grafana-crossplane-mr.yaml,.up/examples/dashboard-grafana-crossplane-resources-ttr.yaml,.up/examples/dashboard-grafana-crossplane-sli-metrics.yaml --setup-script=test/setup.sh --default-timeout=2400 || $(FAIL)
 	@$(OK) running automated tests
 
 # This target requires the following environment variables to be set:
