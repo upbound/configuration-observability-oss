@@ -12,15 +12,18 @@ other configurations such as configuration-caas. See the
 additional configurations.
 
 ## Usage
-Run `scripts/bootstrap.sh` to create a cluster, install
-Prometheus operators, Grafana, run tests, and Crossplane and Provider service
-monitors for further exploration.
+Run `make e2e` directly to exercise end to end tests
+for the observability integrations. After running the
+tests, the kind cluster will remain but the tests will
+clean up the operator namespace and delete the pods in it
+at the conclusion of the tests by default.
 
-You may run `make e2e` directly to exercise end to end tests
-for the observability integrations.
-
-The `_output` directory includes readily usable configuration packages
-after `make build` has been run.
+Feel free to apply the resource claim as follows to re-create
+the namespace, Prometheus, Grafana and dependencies for further
+exploration.
+```
+kubectl apply -f .up/examples/oss.yaml
+```
 
 Use the following to forward localhost:9090 to the Prometheus pod.
 ```
@@ -43,7 +46,7 @@ kubectl -n operators port-forward ${GRAFANA_POD_NAME} 3000
 Log in to Grafana at http://localhost:3000 with the credentials
 obtained from running the following.
 ```
-scripts/get-creds.sh
+scripts/grafana-get-creds.sh
 ```
 
 Load dashboards that are part of this configuration repository from
@@ -56,7 +59,7 @@ the `dashboards` folder.  See example dashboards below.
 ![Controller Runtime Panels From Crossplane Dashboar](.up/dashboards/crossplane-controller-runtime-panels.png)
 
 ### Crossplane Observability In Action
-Now that your cluster has been bootstrapped, and that prometheus and grafana
+Once your cluster has been bootstrapped, and that prometheus and grafana
 endpoints have been forwarded, what's next?
 
 Install a kubernetes secret with your provider credentials or use IRSA or
@@ -72,7 +75,7 @@ kubectl create secret generic aws-creds \
 ```
 Note that your shell may need a fully qualified path versus `~` above.
 
-Now apply a provider configuration as follows.
+Apply a provider configuration as follows.
 ```
 cat <<EOF | kubectl -f -
 apiVersion: aws.upbound.io/v1beta1
@@ -89,10 +92,10 @@ spec:
 EOF
 ```
 
-You are good to go to apply resource claims and see information on the
+Apply resource claims and see information on the
 loaded dashboards. For example you can create an AWS VPC as follows, and
-you can of course use your own compositions and any of our reference
-configurations.
+you can use your own compositions and any of our
+[marketplace configurations](https://marketplace.upbound.io/configurations).
 
 ```
 apiVersion: ec2.aws.upbound.io/v1beta1
