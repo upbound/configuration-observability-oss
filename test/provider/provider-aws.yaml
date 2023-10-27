@@ -4,6 +4,8 @@ metadata:
   name: provider-aws-account
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-account:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -11,6 +13,8 @@ metadata:
   name: provider-aws-ec2
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-ec2:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -18,6 +22,8 @@ metadata:
   name: provider-aws-efs
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-efs:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -25,6 +31,8 @@ metadata:
   name: provider-aws-eks
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-eks:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -32,6 +40,8 @@ metadata:
   name: provider-aws-elasticache
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-elasticache:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -39,6 +49,8 @@ metadata:
   name: provider-aws-iam
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-iam:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -46,6 +58,8 @@ metadata:
   name: provider-aws-kms
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-kms:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -53,6 +67,8 @@ metadata:
   name: provider-aws-mq
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-mq:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -60,6 +76,8 @@ metadata:
   name: provider-aws-rds
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-rds:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -67,6 +85,8 @@ metadata:
   name: provider-aws-s3
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-s3:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -74,6 +94,8 @@ metadata:
   name: provider-aws-secretsmanager
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-secretsmanager:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -81,6 +103,8 @@ metadata:
   name: provider-aws-vpc
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-vpc:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -88,3 +112,5 @@ metadata:
   name: provider-aws-waf
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-waf:v0.42.0
+  controllerConfigRef:
+    name: oss-controller-config

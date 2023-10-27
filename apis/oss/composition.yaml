@@ -21,17 +21,74 @@ spec:
                 fmt: "configuration-observability-%s"
 
   resources:
-    - name: namespace
+    - name: podMonitorCrossplaneRbacManager
       base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
         spec:
           forProvider:
             manifest:
-              apiVersion: v1
-              kind: Namespace
+              apiVersion: monitoring.coreos.com/v1
+              kind: PodMonitor
               metadata:
-                name: operators
+                name: crossplane-rbac-manager
+                namespace: upbound-system
+                labels:
+                  app: crossplane-rbac-manager
+              spec:
+                selector:
+                  matchLabels:
+                    app: crossplane-rbac-manager
+                podMetricsEndpoints:
+                - port: metrics
+      patches:
+        - type: PatchSet
+          patchSetName: common
+
+    - name: podMonitorCrossplane
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: Object
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: monitoring.coreos.com/v1
+              kind: PodMonitor
+              metadata:
+                name: crossplane
+                namespace: upbound-system
+                labels:
+                  app: crossplane
+              spec:
+                selector:
+                  matchLabels:
+                    app: crossplane
+                podMetricsEndpoints:
+                - port: metrics
+      patches:
+        - type: PatchSet
+          patchSetName: common
+
+    - name: podMonitorCrossplaneProviders
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: Object
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: monitoring.coreos.com/v1
+              kind: PodMonitor
+              metadata:
+                name: crossplane-providers
+                namespace: upbound-system
+                labels:
+                  app: crossplane-providers
+              spec:
+                selector:
+                  matchLabels:
+                    app: crossplane-providers
+                podMetricsEndpoints:
+                - port: http-prom
       patches:
         - type: PatchSet
           patchSetName: common
@@ -45,11 +102,9 @@ spec:
           forProvider:
             namespace: operators
             chart:
-              # from https://github.com/prometheus-community/helm-charts
-              # Note that default values are overridden by the patches below.
               name: kube-prometheus-stack
               repository: https://prometheus-community.github.io/helm-charts
-              version: "41.4.1"
+              version: "52.1.0"
             values:
               prometheus:
                 prometheusSpec:
@@ -57,7 +112,6 @@ spec:
                   podMonitorSelectorNilUsesHelmValues: false
                   probeSelectorNilUsesHelmValues: false
                   ruleSelectorNilUsesHelmValues: false
-
       patches:
         - type: PatchSet
           patchSetName: common
@@ -67,11 +121,9 @@ spec:
             - type: string
               string:
                 fmt: "configuration-observability-%s"
-        # All Helm releases derive their labels and annotations from the claim.
         - fromFieldPath: metadata.labels
           toFieldPath: metadata.labels
         - fromFieldPath: metadata.annotations
           toFieldPath: metadata.annotations
-        # Derive the Prometheus operator image and tag from the claim.
-        - fromFieldPath: spec.operators.prometheus.version
+        - fromFieldPath: spec.parameters.operators.prometheus.version
           toFieldPath: spec.forProvider.chart.version
