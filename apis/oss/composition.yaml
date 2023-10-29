@@ -15,16 +15,15 @@ spec:
           toFieldPath: spec.deletionPolicy
         - fromFieldPath: spec.parameters.id
           toFieldPath: spec.providerConfigRef.name
-          transforms:
-            - type: string
-              string:
-                fmt: "configuration-observability-%s"
 
   resources:
     - name: podMonitorCrossplaneRbacManager
       base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
+        metadata:
+          labels: 
+            type: podMonitorCrossplaneRbacManager
         spec:
           forProvider:
             manifest:
@@ -49,6 +48,9 @@ spec:
       base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
+        metadata:
+          labels: 
+            type: podMonitorCrossplane
         spec:
           forProvider:
             manifest:
@@ -73,6 +75,9 @@ spec:
       base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
+        metadata:
+          labels: 
+            type: podMonitorCrossplaneProviders
         spec:
           forProvider:
             manifest:
@@ -119,13 +124,63 @@ spec:
           toFieldPath: metadata.name
         - fromFieldPath: spec.parameters.id
           toFieldPath: metadata.annotations[crossplane.io/external-name]
-          transforms:
-            - type: string
-              string:
-                fmt: "configuration-observability-%s"
         - fromFieldPath: metadata.labels
           toFieldPath: metadata.labels
         - fromFieldPath: metadata.annotations
           toFieldPath: metadata.annotations
         - fromFieldPath: spec.parameters.operators.prometheus.version
           toFieldPath: spec.forProvider.chart.version
+
+    - name: usagePrometheusByPodMonitorCrossplaneRbacManager
+      base:
+        apiVersion: apiextensions.crossplane.io/v1alpha1
+        kind: Usage
+        spec:
+          of:
+            apiVersion: helm.crossplane.io/v1beta1
+            kind: Release
+            resourceSelector:
+              matchControllerRef: true
+          by:
+            apiVersion: kubernetes.crossplane.io/v1alpha1
+            kind: Object
+            resourceSelector:
+              matchControllerRef: true
+              matchLabels:
+                type: podMonitorCrossplaneRbacManager
+
+    - name: usagePrometheusByPodMonitorCrossplane
+      base:
+        apiVersion: apiextensions.crossplane.io/v1alpha1
+        kind: Usage
+        spec:
+          of:
+            apiVersion: helm.crossplane.io/v1beta1
+            kind: Release
+            resourceSelector:
+              matchControllerRef: true
+          by:
+            apiVersion: kubernetes.crossplane.io/v1alpha1
+            kind: Object
+            resourceSelector:
+              matchControllerRef: true
+              matchLabels:
+                type: podMonitorCrossplane
+
+    - name: usagePrometheusByPodMonitorProviders
+      base:
+        apiVersion: apiextensions.crossplane.io/v1alpha1
+        kind: Usage
+        spec:
+          of:
+            apiVersion: helm.crossplane.io/v1beta1
+            kind: Release
+            resourceSelector:
+              matchControllerRef: true
+          by:
+            apiVersion: kubernetes.crossplane.io/v1alpha1
+            kind: Object
+            resourceSelector:
+              matchControllerRef: true
+              matchLabels:
+                type: podMonitorCrossplaneProviders

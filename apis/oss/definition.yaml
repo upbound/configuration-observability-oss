@@ -3,6 +3,7 @@ kind: CompositeResourceDefinition
 metadata:
   name: xosss.observe.platform.upbound.io
 spec:
+  defaultCompositeDeletePolicy: Foreground
   group: observe.platform.upbound.io
   names:
     kind: XOss
