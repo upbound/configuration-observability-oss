@@ -124,6 +124,13 @@ spec:
           toFieldPath: metadata.name
         - fromFieldPath: spec.parameters.id
           toFieldPath: metadata.annotations[crossplane.io/external-name]
+          transforms:
+            - type: match
+              match:
+                patterns:
+                  - type: regexp
+                    regexp: '.*'
+                    result: oss
         - fromFieldPath: metadata.labels
           toFieldPath: metadata.labels
         - fromFieldPath: metadata.annotations

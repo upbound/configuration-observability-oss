@@ -19,6 +19,6 @@ type: Opaque
 stringData:
   credentials: |
     {
-      "url": "http://configuration-observability-oss-grafana.operators",
+      "url": "http://oss-grafana.operators",
       "auth": "admin:prom-operator"
     }
