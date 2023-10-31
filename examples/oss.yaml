@@ -1,13 +1,12 @@
 apiVersion: observe.platform.upbound.io/v1alpha1
 kind: Oss
 metadata:
-  name: oss
+  name: configuration-observability-oss
   namespace: default
-  annotations:
-    uptest.upbound.io/pre-delete-hook: ../../test/pre-delete-hook.sh
 spec:
+  compositeDeletePolicy: Foreground
   parameters:
-    id: oss
+    id: configuration-observability-oss
     operators:
       prometheus:
         version: "52.1.0"

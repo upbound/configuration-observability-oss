@@ -22,17 +22,17 @@ Apply the resource claim as follows to re-create
 the namespace, Prometheus, Grafana and dependencies for further
 exploration.
 ```
-kubectl apply -f .up/examples/oss.yaml
+kubectl apply -f examples/oss.yaml
 ```
 
 To load dashboards that are part of this configuration repository,
 please apply the following dashboard resource claims.
 ```
-kubectl apply -f .up/examples/dashboards/folder-grafana.yaml
-kubectl apply -f .up/examples/dashboards/dashboard-grafana-crossplane-health.yaml
-kubectl apply -f .up/examples/dashboards/dashboard-grafana-crossplane-mr.yaml
-kubectl apply -f .up/examples/dashboards/dashboard-grafana-crossplane-resources-ttr.yaml
-kubectl apply -f .up/examples/dashboards/dashboard-grafana-crossplane-sli-metrics.yaml
+kubectl apply -f examples/dashboards/folder-grafana.yaml
+kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-health.yaml
+kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-mr.yaml
+kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-resources-ttr.yaml
+kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-sli-metrics.yaml
 ```
 
 Use the following to forward localhost:9090 to the Prometheus pod.
@@ -62,13 +62,13 @@ scripts/grafana-get-creds.sh
 See example dashboards below.
 
 #### Crossplane MR Dashboard
-![Crossplane MR Dashboard](.up/docs/media/crossplane-mr-dashboard.png)
+![Crossplane MR Dashboard](docs/media/crossplane-mr-dashboard.png)
 
 #### Controller Runtime Panels From Crossplane Dashboard
-![Controller Runtime Panels From Crossplane Dashboar](.up/docs/media/crossplane-controller-runtime-panels.png)
+![Controller Runtime Panels From Crossplane Dashboar](docs/media/crossplane-controller-runtime-panels.png)
 
 #### Resources TTR Dashboard
-![Resources TTR Dashboard](.up/docs/media/resoures-ttr-dashboard.png)
+![Resources TTR Dashboard](docs/media/resoures-ttr-dashboard.png)
 
 ### Crossplane Observability In Action
 Once your cluster has been bootstrapped, and that prometheus and grafana
