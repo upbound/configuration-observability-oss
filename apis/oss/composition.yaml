@@ -110,6 +110,31 @@ spec:
         - type: PatchSet
           patchSetName: common
 
+    - name: podMonitorXmetrics
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: Object
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: monitoring.coreos.com/v1
+              kind: PodMonitor
+              metadata:
+                name: x-metrics
+                namespace: x-metrics
+                labels:
+                  app: x-metrics
+              spec:
+                selector:
+                  matchLabels:
+                    app: x-metrics
+                podMetricsEndpoints:
+                  - port: http-prom
+                    path: /x-metrics
+      patches:
+        - type: PatchSet
+          patchSetName: common
+
     - name: releasePrometheus
       base:
         apiVersion: helm.crossplane.io/v1beta1
