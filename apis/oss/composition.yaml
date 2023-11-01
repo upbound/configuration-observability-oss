@@ -31,10 +31,14 @@ spec:
               kind: PodMonitor
               metadata:
                 name: crossplane-rbac-manager
-                namespace: upbound-system
+                namespace: operators
                 labels:
                   app: crossplane-rbac-manager
               spec:
+                namespaceSelector:
+                  matchNames:
+                    - crossplane-system
+                    - upbound-system
                 selector:
                   matchLabels:
                     app: crossplane-rbac-manager
@@ -58,10 +62,14 @@ spec:
               kind: PodMonitor
               metadata:
                 name: crossplane
-                namespace: upbound-system
+                namespace: operators
                 labels:
                   app: crossplane
               spec:
+                namespaceSelector:
+                  matchNames:
+                    - crossplane-system
+                    - upbound-system
                 selector:
                   matchLabels:
                     app: crossplane
@@ -85,10 +93,14 @@ spec:
               kind: PodMonitor
               metadata:
                 name: crossplane-providers
-                namespace: upbound-system
+                namespace: operators
                 labels:
                   app: crossplane-providers
               spec:
+                namespaceSelector:
+                  matchNames:
+                    - crossplane-system
+                    - upbound-system
                 selector:
                   matchLabels:
                     app: crossplane-providers
