@@ -1,0 +1,768 @@
+apiVersion: oss.grafana.crossplane.io/v1alpha1
+kind: Dashboard
+metadata:
+  name: crossplane-xmetrics
+spec:
+  forProvider:
+    folderRef:
+      name:  configuration-observability-oss
+    configJson: |
+      {
+        "annotations": {
+          "list": [
+            {
+              "builtIn": 1,
+              "datasource": {
+                "type": "grafana",
+                "uid": "-- Grafana --"
+              },
+              "enable": true,
+              "hide": true,
+              "iconColor": "rgba(0, 211, 255, 1)",
+              "name": "Annotations & Alerts",
+              "target": {
+                "limit": 100,
+                "matchAny": false,
+                "tags": [],
+                "type": "dashboard"
+              },
+              "type": "dashboard"
+            }
+          ]
+        },
+        "description": "Claim Status Related Metrics",
+        "editable": true,
+        "fiscalYearStartMonth": 0,
+        "graphTooltip": 0,
+        "id": 76,
+        "links": [],
+        "liveNow": false,
+        "panels": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 7,
+              "x": 0,
+              "y": 0
+            },
+            "id": 10,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "sum(kubernetes_crossplane_io_Object_v1alpha1_info > 0)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Number of MRs by Control Plane",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 7,
+              "x": 7,
+              "y": 0
+            },
+            "id": 9,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "sum(kubernetes_crossplane_io_Object_v1alpha1_synced{name=~\"$claim_name.*\"} > 0)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Number of Synced MRs per Claim",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 7,
+              "x": 14,
+              "y": 0
+            },
+            "id": 8,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "sum(kubernetes_crossplane_io_Object_v1alpha1_ready{name=~\"$claim_name.*\"} > 0)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Number of Ready MRs per Claim",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": [
+                        "{__name__=\"kubernetes_crossplane_io_Object_v1alpha1_synced\", app=\"x-metrics\", app_kubernetes_io_instance=\"x-metrics\", app_kubernetes_io_name=\"x-metrics\", instance=\"240.59.99.22:8080\", job=\"kubernetes-pods\", kubernetes_namespace=\"x-metrics\", kubernetes_pod_name=\"x-metrics-65c989f5b9-f8h7f\", name=\"rds-test-postgres-01-nzhjh-mrvsn\", node=\"ip-240-59-88-238.us-west-2.compute.internal\", pod_template_hash=\"65c989f5b9\"}"
+                      ],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": [
+                    {
+                      "id": "custom.hideFrom",
+                      "value": {
+                        "legend": false,
+                        "tooltip": false,
+                        "viz": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "gridPos": {
+              "h": 9,
+              "w": 10,
+              "x": 0,
+              "y": 4
+            },
+            "id": 5,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "kubernetes_crossplane_io_Object_v1alpha1_synced{name=~\"$claim_name.*\"}",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Kubernetes Crossplane.io Object v1alpha1 Synced",
+            "type": "timeseries"
+          },
+          {
+            "columns": [],
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
+            "fontSize": "100%",
+            "gridPos": {
+              "h": 9,
+              "w": 13,
+              "x": 10,
+              "y": 4
+            },
+            "id": 6,
+            "options": {
+              "footer": {
+                "fields": "",
+                "reducer": [
+                  "sum"
+                ],
+                "show": false
+              },
+              "showHeader": true
+            },
+            "pluginVersion": "9.3.6",
+            "showHeader": true,
+            "sort": {
+              "desc": false
+            },
+            "styles": [
+              {
+                "$$hashKey": "object:312",
+                "alias": "Time",
+                "align": "auto",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "pattern": "Time",
+                "type": "date"
+              },
+              {
+                "$$hashKey": "object:313",
+                "alias": "",
+                "align": "right",
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "decimals": 2,
+                "pattern": "/.*/",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short"
+              }
+            ],
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "builder",
+                "exemplar": false,
+                "expr": "kubernetes_crossplane_io_Object_v1alpha1_synced_time{name=~\"$claim_name.*\"}",
+                "format": "table",
+                "instant": true,
+                "interval": "",
+                "legendFormat": "__auto",
+                "range": false,
+                "refId": "A"
+              }
+            ],
+            "title": "Kubernetes Crossplane.io Object v1alpha1 Synched Time",
+            "transform": "timeseries_to_rows",
+            "transformations": [
+              {
+                "id": "organize",
+                "options": {
+                  "excludeByName": {
+                    "Time": false,
+                    "Value": true,
+                    "__name__": true,
+                    "app": true,
+                    "app_kubernetes_io_instance": true,
+                    "app_kubernetes_io_name": true,
+                    "instance": true,
+                    "job": true,
+                    "kubernetes_namespace": true,
+                    "kubernetes_pod_name": true,
+                    "name": false,
+                    "node": true,
+                    "pod_template_hash": true
+                  },
+                  "indexByName": {
+                    "Time": 1,
+                    "Value": 12,
+                    "__name__": 2,
+                    "app": 3,
+                    "app_kubernetes_io_instance": 4,
+                    "app_kubernetes_io_name": 5,
+                    "instance": 6,
+                    "job": 7,
+                    "kubernetes_namespace": 8,
+                    "kubernetes_pod_name": 9,
+                    "name": 0,
+                    "node": 10,
+                    "pod_template_hash": 11
+                  },
+                  "renameByName": {}
+                }
+              }
+            ],
+            "type": "table-old"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": [
+                        "{__name__=\"kubernetes_crossplane_io_Object_v1alpha1_ready\", app=\"x-metrics\", app_kubernetes_io_instance=\"x-metrics\", app_kubernetes_io_name=\"x-metrics\", instance=\"240.59.99.22:8080\", job=\"kubernetes-pods\", kubernetes_namespace=\"x-metrics\", kubernetes_pod_name=\"x-metrics-65c989f5b9-f8h7f\", name=\"rds-test-postgres-01-nzhjh-mrvsn\", node=\"ip-240-59-88-238.us-west-2.compute.internal\", pod_template_hash=\"65c989f5b9\"}"
+                      ],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": [
+                    {
+                      "id": "custom.hideFrom",
+                      "value": {
+                        "legend": false,
+                        "tooltip": false,
+                        "viz": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "gridPos": {
+              "h": 9,
+              "w": 10,
+              "x": 0,
+              "y": 13
+            },
+            "id": 7,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "kubernetes_crossplane_io_Object_v1alpha1_ready{name=~\"$claim_name.*\"}",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Kubernetes Crossplane.io Object v1alpha1 Ready",
+            "type": "timeseries"
+          },
+          {
+            "columns": [],
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "align": "auto",
+                  "displayMode": "auto",
+                  "inspect": false
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "fontSize": "100%",
+            "gridPos": {
+              "h": 9,
+              "w": 13,
+              "x": 10,
+              "y": 13
+            },
+            "id": 4,
+            "options": {
+              "footer": {
+                "fields": "",
+                "reducer": [
+                  "sum"
+                ],
+                "show": false
+              },
+              "showHeader": true
+            },
+            "pluginVersion": "9.3.6",
+            "showHeader": true,
+            "sort": {
+              "col": 0,
+              "desc": true
+            },
+            "styles": [
+              {
+                "$$hashKey": "object:312",
+                "alias": "Time",
+                "align": "auto",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "pattern": "Time",
+                "type": "date"
+              },
+              {
+                "$$hashKey": "object:313",
+                "alias": "",
+                "align": "right",
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "decimals": 2,
+                "pattern": "/.*/",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short"
+              }
+            ],
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "builder",
+                "exemplar": false,
+                "expr": "kubernetes_crossplane_io_Object_v1alpha1_ready_time{name=~\"$claim_name.*\"}",
+                "format": "table",
+                "instant": true,
+                "interval": "",
+                "legendFormat": "__auto",
+                "range": false,
+                "refId": "A"
+              }
+            ],
+            "title": "Kubernetes Crossplane.io Object v1alpha1 Ready Time",
+            "transform": "timeseries_to_rows",
+            "transformations": [
+              {
+                "id": "organize",
+                "options": {
+                  "excludeByName": {
+                    "Value": true,
+                    "__name__": true,
+                    "app": true,
+                    "app_kubernetes_io_instance": true,
+                    "app_kubernetes_io_name": true,
+                    "instance": true,
+                    "job": true,
+                    "kubernetes_namespace": true,
+                    "kubernetes_pod_name": true,
+                    "node": true,
+                    "pod_template_hash": true
+                  },
+                  "indexByName": {
+                    "Time": 1,
+                    "Value": 12,
+                    "__name__": 2,
+                    "app": 3,
+                    "app_kubernetes_io_instance": 4,
+                    "app_kubernetes_io_name": 5,
+                    "instance": 6,
+                    "job": 7,
+                    "kubernetes_namespace": 8,
+                    "kubernetes_pod_name": 9,
+                    "name": 0,
+                    "node": 10,
+                    "pod_template_hash": 11
+                  },
+                  "renameByName": {}
+                }
+              }
+            ],
+            "type": "table-old"
+          }
+        ],
+        "schemaVersion": 37,
+        "style": "dark",
+        "tags": [],
+        "templating": {
+          "list": [
+            {
+              "current": {
+                "selected": false,
+                "text": "rds-test-postgres-01",
+                "value": "rds-test-postgres-01"
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+              "description": "Claim Name",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Claim Name",
+              "multi": false,
+              "name": "claim_name",
+              "options": [],
+              "query": {
+                "query": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 2,
+              "regex": "/label_crossplane_io_claim_name=\\\"([^\\\"]+)\\\"/",
+              "skipUrlSync": false,
+              "sort": 2,
+              "type": "query"
+            }
+          ]
+        },
+        "time": {
+          "from": "now-30m",
+          "to": "now"
+        },
+        "timepicker": {},
+        "timezone": "",
+        "title": "Crossplane X-Metrics",
+        "uid": "dt-jfvVIk",
+        "version": 1,
+        "weekStart": ""
+      }
