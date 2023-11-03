@@ -41,7 +41,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -90,7 +90,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(kubernetes_crossplane_io_Object_v1alpha1_info > 0)",
@@ -105,7 +105,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -154,7 +154,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(kubernetes_crossplane_io_Object_v1alpha1_synced{name=~\"$claim_name.*\"} > 0)",
@@ -169,7 +169,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -218,7 +218,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(kubernetes_crossplane_io_Object_v1alpha1_ready{name=~\"$claim_name.*\"} > 0)",
@@ -233,7 +233,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -336,7 +336,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "kubernetes_crossplane_io_Object_v1alpha1_synced{name=~\"$claim_name.*\"}",
@@ -352,7 +352,7 @@ spec:
             "columns": [],
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fontSize": "100%",
@@ -407,7 +407,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "builder",
                 "exemplar": false,
@@ -465,7 +465,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -568,7 +568,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "kubernetes_crossplane_io_Object_v1alpha1_ready{name=~\"$claim_name.*\"}",
@@ -584,7 +584,7 @@ spec:
             "columns": [],
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -666,7 +666,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "builder",
                 "exemplar": false,
@@ -733,7 +733,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
               "description": "Claim Name",
@@ -762,7 +762,6 @@ spec:
         "timepicker": {},
         "timezone": "",
         "title": "Crossplane X-Metrics",
-        "uid": "dt-jfvVIk",
         "version": 1,
         "weekStart": ""
       }

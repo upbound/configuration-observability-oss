@@ -47,13 +47,13 @@ spec:
             },
             "id": 2,
             "panels": [],
-            "title": "Managed Resource Counts",
+            "title": "Resource Counts",
             "type": "row"
           },
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -102,7 +102,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1) + sum(tf_upbound_io_ProviderConfig_v1beta1) + sum(kubernetes_crossplane_io_Object_v1alpha1) + sum(kms_aws_upbound_io_Alias_v1beta1) + sum(lambda_aws_upbound_io_Invocation_v1beta1) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1)",
@@ -118,7 +118,72 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 8,
+              "x": 8,
+              "y": 1
+            },
+            "id": 12,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "editorMode": "code",
+                "expr": "sum(tf_upbound_io_Workspace_v1beta1) + sum(tf_upbound_io_ProviderConfig_v1beta1) + sum(kubernetes_crossplane_io_Object_v1alpha1) + sum(kms_aws_upbound_io_Alias_v1beta1) + sum(lambda_aws_upbound_io_Invocation_v1beta1) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1)",
+                "hide": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "C"
+              }
+            ],
+            "title": "Number of Composite Resources",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -144,7 +209,7 @@ spec:
             },
             "gridPos": {
               "h": 4,
-              "w": 4,
+              "w": 8,
               "x": 0,
               "y": 5
             },
@@ -166,7 +231,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1_synced) + sum(tf_upbound_io_ProviderConfig_v1beta1_synced) + sum(kubernetes_crossplane_io_Object_v1alpha1_synced) + sum(kms_aws_upbound_io_Alias_v1beta1_synced) + sum(lambda_aws_upbound_io_Invocation_v1beta1_synced) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1_synced)",
@@ -181,7 +246,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -207,8 +272,8 @@ spec:
             },
             "gridPos": {
               "h": 4,
-              "w": 4,
-              "x": 4,
+              "w": 8,
+              "x": 8,
               "y": 5
             },
             "id": 7,
@@ -229,7 +294,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1_ready) + sum(tf_upbound_io_ProviderConfig_v1beta1_ready) + sum(kubernetes_crossplane_io_Object_v1alpha1_ready) + sum(kms_aws_upbound_io_Alias_v1beta1_ready) + sum(lambda_aws_upbound_io_Invocation_v1beta1_ready) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1_ready)",
@@ -238,7 +303,7 @@ spec:
                 "refId": "A"
               }
             ],
-            "title": "Number of Managed Resources In Ready",
+            "title": "Number of Managed Resources Ready",
             "type": "gauge"
           },
           {
@@ -257,7 +322,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -337,10 +402,10 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "kubernetes_crossplane_io_Object_v1alpha1",
+                "expr": "histogram_quantile(0.95, sum(rate(upjet_resource_ttr_bucket[$interval])) by (le))",
                 "hide": false,
                 "legendFormat": "__auto",
                 "range": true,
@@ -360,12 +425,12 @@ spec:
             {
               "current": {
                 "selected": false,
-                "text": "awsuswest2-afaytelson",
-                "value": "awsuswest2-afaytelson"
+                "text": "awsuswest2-markus-schweig",
+                "value": "awsuswest2-markus-schweig"
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
               "description": "The Kubernetes namespace where the Crossplane resource claim was applied.",
@@ -388,12 +453,12 @@ spec:
             {
               "current": {
                 "selected": false,
-                "text": "afaytelson-provider-token",
-                "value": "afaytelson-provider-token"
+                "text": "rds-test-01",
+                "value": "rds-test-01"
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
               "description": "The name of the Crossplane resource claim.",
@@ -416,12 +481,12 @@ spec:
             {
               "current": {
                 "selected": false,
-                "text": "afaytelson-provider-token-vgr98",
-                "value": "afaytelson-provider-token-vgr98"
+                "text": "rds-test-01-tncc2",
+                "value": "rds-test-01-tncc2"
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
               "description": "The name of the Crossplane composite resource (XR) that was created from a claim.",
@@ -585,14 +650,13 @@ spec:
             },
             {
               "current": {
-                "isNone": true,
-                "selected": true,
-                "text": "None",
+                "selected": false,
+                "text": "",
                 "value": ""
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "query_result(upjet_resource_ttr_bucket)",
               "description": "API group.",
@@ -614,14 +678,13 @@ spec:
             },
             {
               "current": {
-                "isNone": true,
                 "selected": false,
-                "text": "None",
+                "text": "",
                 "value": ""
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "query_result(upjet_resource_ttr_bucket)",
               "description": "The kind of the resource.",
@@ -640,17 +703,49 @@ spec:
               "skipUrlSync": false,
               "sort": 1,
               "type": "query"
+            },
+            {
+              "current": {
+                "selected": false,
+                "text": "2m",
+                "value": "2m"
+              },
+              "description": "Interval.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Interval",
+              "multi": false,
+              "name": "interval",
+              "options": [
+                {
+                  "selected": true,
+                  "text": "2m",
+                  "value": "2m"
+                },
+                {
+                  "selected": false,
+                  "text": "5m",
+                  "value": "5m"
+                },
+                {
+                  "selected": false,
+                  "text": "10m",
+                  "value": "10m"
+                }
+              ],
+              "query": "2m, 5m, 10m",
+              "skipUrlSync": false,
+              "type": "custom"
             }
           ]
         },
         "time": {
-          "from": "now-1h",
+          "from": "now-30m",
           "to": "now"
         },
         "timepicker": {},
         "timezone": "",
         "title": "Crossplane Top Level View",
-        "uid": "sg0yFc4Ik",
-        "version": 4,
+        "version": 5,
         "weekStart": ""
       }
