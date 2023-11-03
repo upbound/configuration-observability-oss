@@ -1,0 +1,656 @@
+apiVersion: oss.grafana.crossplane.io/v1alpha1
+kind: Dashboard
+metadata:
+  name: crossplane-mr
+spec:
+  forProvider:
+    folderRef:
+      name:  configuration-observability-oss
+    configJson: |
+      {
+        "annotations": {
+          "list": [
+            {
+              "builtIn": 1,
+              "datasource": {
+                "type": "grafana",
+                "uid": "-- Grafana --"
+              },
+              "enable": true,
+              "hide": true,
+              "iconColor": "rgba(0, 211, 255, 1)",
+              "name": "Annotations & Alerts",
+              "target": {
+                "limit": 100,
+                "matchAny": false,
+                "tags": [],
+                "type": "dashboard"
+              },
+              "type": "dashboard"
+            }
+          ]
+        },
+        "editable": true,
+        "fiscalYearStartMonth": 0,
+        "graphTooltip": 0,
+        "id": 101,
+        "links": [],
+        "liveNow": false,
+        "panels": [
+          {
+            "collapsed": false,
+            "gridPos": {
+              "h": 1,
+              "w": 24,
+              "x": 0,
+              "y": 0
+            },
+            "id": 2,
+            "panels": [],
+            "title": "Managed Resource Counts",
+            "type": "row"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 8,
+              "x": 0,
+              "y": 1
+            },
+            "id": 4,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "sum(tf_upbound_io_Workspace_v1beta1) + sum(tf_upbound_io_ProviderConfig_v1beta1) + sum(kubernetes_crossplane_io_Object_v1alpha1) + sum(kms_aws_upbound_io_Alias_v1beta1) + sum(lambda_aws_upbound_io_Invocation_v1beta1) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1)",
+                "hide": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "C"
+              }
+            ],
+            "title": "Number of Managed Resources",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 4,
+              "x": 0,
+              "y": 5
+            },
+            "id": 6,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "sum(tf_upbound_io_Workspace_v1beta1_synced) + sum(tf_upbound_io_ProviderConfig_v1beta1_synced) + sum(kubernetes_crossplane_io_Object_v1alpha1_synced) + sum(kms_aws_upbound_io_Alias_v1beta1_synced) + sum(lambda_aws_upbound_io_Invocation_v1beta1_synced) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1_synced)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Number of Managed Resources In Sync",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 4,
+              "x": 4,
+              "y": 5
+            },
+            "id": 7,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "sum(tf_upbound_io_Workspace_v1beta1_ready) + sum(tf_upbound_io_ProviderConfig_v1beta1_ready) + sum(kubernetes_crossplane_io_Object_v1alpha1_ready) + sum(kms_aws_upbound_io_Alias_v1beta1_ready) + sum(lambda_aws_upbound_io_Invocation_v1beta1_ready) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1_ready)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Number of Managed Resources In Ready",
+            "type": "gauge"
+          },
+          {
+            "collapsed": false,
+            "gridPos": {
+              "h": 1,
+              "w": 24,
+              "x": 0,
+              "y": 9
+            },
+            "id": 9,
+            "panels": [],
+            "title": "Resource Tables",
+            "type": "row"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "fillOpacity": 80,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineWidth": 1
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": [
+                        "{app=\"x-metrics\", app_kubernetes_io_instance=\"x-metrics\", app_kubernetes_io_name=\"x-metrics\", instance=\"240.59.99.22:8080\", job=\"kubernetes-pods\", kubernetes_namespace=\"x-metrics\", kubernetes_pod_name=\"x-metrics-65c989f5b9-f8h7f\", name=\"afaytelson-provider-token-vgr98-gjs7c\", node=\"ip-240-59-88-238.us-west-2.compute.internal\", pod_template_hash=\"65c989f5b9\"}"
+                      ],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": [
+                    {
+                      "id": "custom.hideFrom",
+                      "value": {
+                        "legend": false,
+                        "tooltip": false,
+                        "viz": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 12,
+              "x": 0,
+              "y": 10
+            },
+            "id": 11,
+            "options": {
+              "bucketOffset": 0,
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              }
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "kubernetes_crossplane_io_Object_v1alpha1",
+                "hide": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "Composite Resource (XR) Time To Rreadiness",
+            "transformations": [],
+            "type": "histogram"
+          }
+        ],
+        "schemaVersion": 37,
+        "style": "dark",
+        "tags": [],
+        "templating": {
+          "list": [
+            {
+              "current": {
+                "selected": false,
+                "text": "awsuswest2-afaytelson",
+                "value": "awsuswest2-afaytelson"
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+              "description": "The Kubernetes namespace where the Crossplane resource claim was applied.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Claim Namespace",
+              "multi": false,
+              "name": "claim_namespace",
+              "options": [],
+              "query": {
+                "query": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "/label_crossplane_io_claim_namespace=\\\"([^\\\"]+)\\\"/",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
+            },
+            {
+              "current": {
+                "selected": false,
+                "text": "afaytelson-provider-token",
+                "value": "afaytelson-provider-token"
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+              "description": "The name of the Crossplane resource claim.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Claim Name",
+              "multi": false,
+              "name": "claim_name",
+              "options": [],
+              "query": {
+                "query": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "/label_crossplane_io_claim_name=\\\"([^\\\"]+)\\\"/",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
+            },
+            {
+              "current": {
+                "selected": false,
+                "text": "afaytelson-provider-token-vgr98",
+                "value": "afaytelson-provider-token-vgr98"
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+              "description": "The name of the Crossplane composite resource (XR) that was created from a claim.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Composite Name",
+              "multi": false,
+              "name": "composite_name",
+              "options": [],
+              "query": {
+                "query": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "/label_crossplane_io_composite=\\\"([^\\\"]+)\\\"/",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
+            },
+            {
+              "current": {
+                "selected": false,
+                "text": "crossplane-system",
+                "value": "crossplane-system"
+              },
+              "description": "The Kubernetes namespace where providers and Crossplane pods reside.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Provider Namespace",
+              "multi": false,
+              "name": "provider_namespace",
+              "options": [
+                {
+                  "selected": true,
+                  "text": "crossplane-system",
+                  "value": "crossplane-system"
+                },
+                {
+                  "selected": false,
+                  "text": "upbound-system",
+                  "value": "upbound-system"
+                }
+              ],
+              "query": "crossplane-system,upbound-system",
+              "skipUrlSync": false,
+              "type": "custom"
+            },
+            {
+              "current": {
+                "selected": false,
+                "text": "true",
+                "value": "true"
+              },
+              "description": "The status of a resource.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Synced Status",
+              "multi": false,
+              "name": "synced_status",
+              "options": [
+                {
+                  "selected": true,
+                  "text": "true",
+                  "value": "true"
+                },
+                {
+                  "selected": false,
+                  "text": "false",
+                  "value": "false"
+                },
+                {
+                  "selected": false,
+                  "text": "other",
+                  "value": "other"
+                }
+              ],
+              "query": "true, false, other\n",
+              "skipUrlSync": false,
+              "type": "custom"
+            },
+            {
+              "current": {
+                "selected": false,
+                "text": "true",
+                "value": "true"
+              },
+              "description": "The ready status of a resource.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Ready Status",
+              "multi": false,
+              "name": "ready_status",
+              "options": [
+                {
+                  "selected": true,
+                  "text": "true",
+                  "value": "true"
+                },
+                {
+                  "selected": false,
+                  "text": "false",
+                  "value": "false"
+                },
+                {
+                  "selected": false,
+                  "text": "other",
+                  "value": "other"
+                }
+              ],
+              "query": "true, false, other",
+              "skipUrlSync": false,
+              "type": "custom"
+            },
+            {
+              "current": {
+                "selected": false,
+                "text": "0.5",
+                "value": "0.5"
+              },
+              "description": "Each of a set of values of a variate which divide the frequency distribution into equal groups.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Quantile",
+              "multi": false,
+              "name": "quantile",
+              "options": [
+                {
+                  "selected": true,
+                  "text": "0.5",
+                  "value": "0.5"
+                },
+                {
+                  "selected": false,
+                  "text": "0.75",
+                  "value": "0.75"
+                },
+                {
+                  "selected": false,
+                  "text": "0.9",
+                  "value": "0.9"
+                },
+                {
+                  "selected": false,
+                  "text": "0.95",
+                  "value": "0.95"
+                },
+                {
+                  "selected": false,
+                  "text": "0.99",
+                  "value": "0.99"
+                },
+                {
+                  "selected": false,
+                  "text": "100",
+                  "value": "100"
+                }
+              ],
+              "query": "0.5,0.75,0.9,0.95,0.99,100",
+              "skipUrlSync": false,
+              "type": "custom"
+            },
+            {
+              "current": {
+                "isNone": true,
+                "selected": true,
+                "text": "None",
+                "value": ""
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "query_result(upjet_resource_ttr_bucket)",
+              "description": "API group.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "group",
+              "multi": false,
+              "name": "group",
+              "options": [],
+              "query": {
+                "query": "query_result(upjet_resource_ttr_bucket)",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "/group=\\\"([^\\\"]+)\\\"/",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
+            },
+            {
+              "current": {
+                "isNone": true,
+                "selected": false,
+                "text": "None",
+                "value": ""
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "query_result(upjet_resource_ttr_bucket)",
+              "description": "The kind of the resource.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "kind",
+              "multi": false,
+              "name": "kind",
+              "options": [],
+              "query": {
+                "query": "query_result(upjet_resource_ttr_bucket)",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
+            }
+          ]
+        },
+        "time": {
+          "from": "now-1h",
+          "to": "now"
+        },
+        "timepicker": {},
+        "timezone": "",
+        "title": "Crossplane Top Level View",
+        "uid": "sg0yFc4Ik",
+        "version": 4,
+        "weekStart": ""
+      }
