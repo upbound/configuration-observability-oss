@@ -1,7 +1,7 @@
 apiVersion: oss.grafana.crossplane.io/v1alpha1
 kind: Dashboard
 metadata:
-  name: crossplane-mr
+  name: crossplane-top-level
 spec:
   forProvider:
     folderRef:
@@ -53,7 +53,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "PBFA97CFB590B2093"
             },
             "description": "",
             "fieldConfig": {
@@ -80,7 +80,7 @@ spec:
             },
             "gridPos": {
               "h": 4,
-              "w": 8,
+              "w": 6,
               "x": 0,
               "y": 1
             },
@@ -102,7 +102,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "prometheus"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1) + sum(tf_upbound_io_ProviderConfig_v1beta1) + sum(kubernetes_crossplane_io_Object_v1alpha1) + sum(kms_aws_upbound_io_Alias_v1beta1) + sum(lambda_aws_upbound_io_Invocation_v1beta1) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1)",
@@ -112,15 +112,14 @@ spec:
                 "refId": "C"
               }
             ],
-            "title": "Number of Managed Resources",
+            "title": "Managed Resources",
             "type": "gauge"
           },
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "PBFA97CFB590B2093"
             },
-            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
@@ -145,73 +144,9 @@ spec:
             },
             "gridPos": {
               "h": 4,
-              "w": 8,
-              "x": 8,
+              "w": 9,
+              "x": 6,
               "y": 1
-            },
-            "id": 12,
-            "options": {
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "showThresholdLabels": false,
-              "showThresholdMarkers": true
-            },
-            "pluginVersion": "9.3.6",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
-                },
-                "editorMode": "code",
-                "expr": "sum(tf_upbound_io_Workspace_v1beta1) + sum(tf_upbound_io_ProviderConfig_v1beta1) + sum(kubernetes_crossplane_io_Object_v1alpha1) + sum(kms_aws_upbound_io_Alias_v1beta1) + sum(lambda_aws_upbound_io_Invocation_v1beta1) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1)",
-                "hide": false,
-                "legendFormat": "__auto",
-                "range": true,
-                "refId": "C"
-              }
-            ],
-            "title": "Number of Composite Resources",
-            "type": "gauge"
-          },
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
-            },
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 4,
-              "w": 8,
-              "x": 0,
-              "y": 5
             },
             "id": 6,
             "options": {
@@ -231,7 +166,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "prometheus"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1_synced) + sum(tf_upbound_io_ProviderConfig_v1beta1_synced) + sum(kubernetes_crossplane_io_Object_v1alpha1_synced) + sum(kms_aws_upbound_io_Alias_v1beta1_synced) + sum(lambda_aws_upbound_io_Invocation_v1beta1_synced) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1_synced)",
@@ -240,13 +175,13 @@ spec:
                 "refId": "A"
               }
             ],
-            "title": "Number of Managed Resources In Sync",
+            "title": "Managed Resources In Sync",
             "type": "gauge"
           },
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -272,9 +207,9 @@ spec:
             },
             "gridPos": {
               "h": 4,
-              "w": 8,
-              "x": 8,
-              "y": 5
+              "w": 9,
+              "x": 15,
+              "y": 1
             },
             "id": 7,
             "options": {
@@ -294,7 +229,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "prometheus"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1_ready) + sum(tf_upbound_io_ProviderConfig_v1beta1_ready) + sum(kubernetes_crossplane_io_Object_v1alpha1_ready) + sum(kms_aws_upbound_io_Alias_v1beta1_ready) + sum(lambda_aws_upbound_io_Invocation_v1beta1_ready) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1_ready)",
@@ -303,7 +238,386 @@ spec:
                 "refId": "A"
               }
             ],
-            "title": "Number of Managed Resources Ready",
+            "title": "Managed Resources Ready",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 6,
+              "x": 0,
+              "y": 5
+            },
+            "id": 14,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "count(apiextensions_crossplane_io_CompositeResourceDefinition_v1)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "API Extensions",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 9,
+              "x": 6,
+              "y": 5
+            },
+            "id": 15,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "count(apiextensions_crossplane_io_CompositeResourceDefinition_v1_synced)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "API Extensions in Sync",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 9,
+              "x": 15,
+              "y": 5
+            },
+            "id": 16,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "count(apiextensions_crossplane_io_CompositeResourceDefinition_v1_ready)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "API Extensions Ready",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 6,
+              "x": 0,
+              "y": 9
+            },
+            "id": 12,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "count(pkg_crossplane_io_ProviderRevision_v1)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Providers",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 9,
+              "x": 6,
+              "y": 9
+            },
+            "id": 17,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "upjet_resource_ttr_count{group=\"$group\",version=\"$version\",kind=\"$kind\"}",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "$group/$version $kind TTR Count",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "TTR Sum in Minutes.",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 9,
+              "x": 15,
+              "y": 9
+            },
+            "id": 13,
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "expr": "upjet_resource_ttr_sum{group=\"$group\",version=\"$version\",kind=\"$kind\"}/60",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "$group/$version $kind  TTR Sum",
             "type": "gauge"
           },
           {
@@ -312,18 +626,118 @@ spec:
               "h": 1,
               "w": 24,
               "x": 0,
-              "y": 9
+              "y": 13
             },
             "id": 9,
             "panels": [],
-            "title": "Resource Tables",
+            "title": "Resource Graphs",
             "type": "row"
           },
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "prometheus"
+              "uid": "PBFA97CFB590B2093"
             },
+            "description": "Preferred query:\nhistogram_quantile($quantile, sum(rate(upjet_resource_ttr_bucket{group=\"$group\",version=\"$version\",kind=\"$kind\"}[$interval])) by (le))",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 16,
+              "x": 0,
+              "y": 14
+            },
+            "id": 11,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "editorMode": "code",
+                "exemplar": true,
+                "expr": "upjet_resource_ttr_bucket{group=\"$group\",version=\"$version\",kind=\"$kind\"}",
+                "format": "time_series",
+                "hide": false,
+                "instant": true,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "$group/$version $kind Time To Readiness in Seconds",
+            "transformations": [],
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "description": "",
             "fieldConfig": {
               "defaults": {
                 "color": {
@@ -362,7 +776,7 @@ spec:
                     "options": {
                       "mode": "exclude",
                       "names": [
-                        "{app=\"x-metrics\", app_kubernetes_io_instance=\"x-metrics\", app_kubernetes_io_name=\"x-metrics\", instance=\"240.59.99.22:8080\", job=\"kubernetes-pods\", kubernetes_namespace=\"x-metrics\", kubernetes_pod_name=\"x-metrics-65c989f5b9-f8h7f\", name=\"afaytelson-provider-token-vgr98-gjs7c\", node=\"ip-240-59-88-238.us-west-2.compute.internal\", pod_template_hash=\"65c989f5b9\"}"
+                        "histogram_quantile(0.95, sum(rate(upjet_resource_ttr_bucket{group=\"lambda.aws.upbound.io\",version=\"v1beta1\",kind=\"Invocation\"}[2m])) by (le))"
                       ],
                       "prefix": "All except:",
                       "readOnly": true
@@ -383,11 +797,11 @@ spec:
             },
             "gridPos": {
               "h": 8,
-              "w": 12,
+              "w": 16,
               "x": 0,
-              "y": 10
+              "y": 22
             },
-            "id": 11,
+            "id": 18,
             "options": {
               "bucketOffset": 0,
               "legend": {
@@ -402,19 +816,33 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "prometheus"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
-                "expr": "histogram_quantile(0.95, sum(rate(upjet_resource_ttr_bucket[$interval])) by (le))",
+                "exemplar": true,
+                "expr": "histogram_quantile($quantile, sum(rate(upjet_resource_ttr_bucket{group=\"$group\",version=\"$version\",kind=\"$kind\"}[$interval])) by (le))",
+                "format": "time_series",
                 "hide": false,
+                "instant": true,
                 "legendFormat": "__auto",
                 "range": true,
                 "refId": "B"
               }
             ],
-            "title": "Composite Resource (XR) Time To Rreadiness",
+            "title": "$group/$version $kind Time TTR Histogram in Seconds",
             "transformations": [],
             "type": "histogram"
+          },
+          {
+            "gridPos": {
+              "h": 1,
+              "w": 24,
+              "x": 0,
+              "y": 30
+            },
+            "id": 20,
+            "title": "Resource Tables",
+            "type": "row"
           }
         ],
         "schemaVersion": 37,
@@ -424,13 +852,13 @@ spec:
           "list": [
             {
               "current": {
-                "selected": false,
+                "selected": true,
                 "text": "awsuswest2-markus-schweig",
                 "value": "awsuswest2-markus-schweig"
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "PBFA97CFB590B2093"
               },
               "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
               "description": "The Kubernetes namespace where the Crossplane resource claim was applied.",
@@ -452,15 +880,15 @@ spec:
             },
             {
               "current": {
-                "selected": false,
-                "text": "rds-test-01",
-                "value": "rds-test-01"
+                "selected": true,
+                "text": "s3-audit-bucket-1",
+                "value": "s3-audit-bucket-1"
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "PBFA97CFB590B2093"
               },
-              "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+              "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels{label_crossplane_io_claim_namespace=\"$claim_namespace\"}",
               "description": "The name of the Crossplane resource claim.",
               "hide": 0,
               "includeAll": false,
@@ -469,7 +897,7 @@ spec:
               "name": "claim_name",
               "options": [],
               "query": {
-                "query": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+                "query": "kubernetes_crossplane_io_Object_v1alpha1_labels{label_crossplane_io_claim_namespace=\"$claim_namespace\"}",
                 "refId": "StandardVariableQuery"
               },
               "refresh": 1,
@@ -481,14 +909,14 @@ spec:
             {
               "current": {
                 "selected": false,
-                "text": "rds-test-01-tncc2",
-                "value": "rds-test-01-tncc2"
+                "text": "s3-audit-bucket-1-kpfnk",
+                "value": "s3-audit-bucket-1-kpfnk"
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "PBFA97CFB590B2093"
               },
-              "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+              "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels{label_crossplane_io_claim_name=\"$claim_name\"}",
               "description": "The name of the Crossplane composite resource (XR) that was created from a claim.",
               "hide": 0,
               "includeAll": false,
@@ -497,7 +925,7 @@ spec:
               "name": "composite_name",
               "options": [],
               "query": {
-                "query": "kubernetes_crossplane_io_Object_v1alpha1_labels",
+                "query": "kubernetes_crossplane_io_Object_v1alpha1_labels{label_crossplane_io_claim_name=\"$claim_name\"}",
                 "refId": "StandardVariableQuery"
               },
               "refresh": 1,
@@ -508,35 +936,7 @@ spec:
             },
             {
               "current": {
-                "selected": false,
-                "text": "crossplane-system",
-                "value": "crossplane-system"
-              },
-              "description": "The Kubernetes namespace where providers and Crossplane pods reside.",
-              "hide": 0,
-              "includeAll": false,
-              "label": "Provider Namespace",
-              "multi": false,
-              "name": "provider_namespace",
-              "options": [
-                {
-                  "selected": true,
-                  "text": "crossplane-system",
-                  "value": "crossplane-system"
-                },
-                {
-                  "selected": false,
-                  "text": "upbound-system",
-                  "value": "upbound-system"
-                }
-              ],
-              "query": "crossplane-system,upbound-system",
-              "skipUrlSync": false,
-              "type": "custom"
-            },
-            {
-              "current": {
-                "selected": false,
+                "selected": true,
                 "text": "true",
                 "value": "true"
               },
@@ -564,6 +964,7 @@ spec:
                 }
               ],
               "query": "true, false, other\n",
+              "queryValue": "",
               "skipUrlSync": false,
               "type": "custom"
             },
@@ -597,14 +998,15 @@ spec:
                 }
               ],
               "query": "true, false, other",
+              "queryValue": "",
               "skipUrlSync": false,
               "type": "custom"
             },
             {
               "current": {
-                "selected": false,
-                "text": "0.5",
-                "value": "0.5"
+                "selected": true,
+                "text": "0.95",
+                "value": "0.95"
               },
               "description": "Each of a set of values of a variate which divide the frequency distribution into equal groups.",
               "hide": 0,
@@ -614,7 +1016,7 @@ spec:
               "name": "quantile",
               "options": [
                 {
-                  "selected": true,
+                  "selected": false,
                   "text": "0.5",
                   "value": "0.5"
                 },
@@ -629,7 +1031,7 @@ spec:
                   "value": "0.9"
                 },
                 {
-                  "selected": false,
+                  "selected": true,
                   "text": "0.95",
                   "value": "0.95"
                 },
@@ -645,18 +1047,19 @@ spec:
                 }
               ],
               "query": "0.5,0.75,0.9,0.95,0.99,100",
+              "queryValue": "",
               "skipUrlSync": false,
               "type": "custom"
             },
             {
               "current": {
-                "selected": false,
-                "text": "",
-                "value": ""
+                "selected": true,
+                "text": "s3.aws.upbound.io",
+                "value": "s3.aws.upbound.io"
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "PBFA97CFB590B2093"
               },
               "definition": "query_result(upjet_resource_ttr_bucket)",
               "description": "API group.",
@@ -679,15 +1082,43 @@ spec:
             {
               "current": {
                 "selected": false,
-                "text": "",
-                "value": ""
+                "text": "v1beta1",
+                "value": "v1beta1"
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "PBFA97CFB590B2093"
               },
-              "definition": "query_result(upjet_resource_ttr_bucket)",
-              "description": "The kind of the resource.",
+              "definition": "query_result(upjet_resource_ttr_bucket{group=\"$group\"})",
+              "description": "API version.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "version",
+              "multi": false,
+              "name": "version",
+              "options": [],
+              "query": {
+                "query": "query_result(upjet_resource_ttr_bucket{group=\"$group\"})",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "/version=\\\"([^\\\"]+)\\\"/",
+              "skipUrlSync": false,
+              "sort": 0,
+              "type": "query"
+            },
+            {
+              "current": {
+                "selected": true,
+                "text": "BucketPublicAccessBlock",
+                "value": "BucketPublicAccessBlock"
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "query_result(upjet_resource_ttr_bucket{group=\"$group\"})",
+              "description": "kind.",
               "hide": 0,
               "includeAll": false,
               "label": "kind",
@@ -695,18 +1126,50 @@ spec:
               "name": "kind",
               "options": [],
               "query": {
-                "query": "query_result(upjet_resource_ttr_bucket)",
+                "query": "query_result(upjet_resource_ttr_bucket{group=\"$group\"})",
                 "refId": "StandardVariableQuery"
               },
               "refresh": 1,
-              "regex": "",
+              "regex": "/kind=\\\"([^\\\"]+)\\\"/",
               "skipUrlSync": false,
-              "sort": 1,
+              "sort": 0,
               "type": "query"
             },
             {
               "current": {
                 "selected": false,
+                "text": [
+                  ""
+                ],
+                "value": [
+                  ""
+                ]
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "upjet_resource_ttr_bucket{group=\"$group\",kind=\"$kind\",version=\"$version\"}",
+              "description": "Less equal.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "le",
+              "multi": true,
+              "name": "le",
+              "options": [],
+              "query": {
+                "query": "upjet_resource_ttr_bucket{group=\"$group\",kind=\"$kind\",version=\"$version\"}",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "/le=\\\"([^\\\"]+)\\\"/",
+              "skipUrlSync": false,
+              "sort": 3,
+              "type": "query"
+            },
+            {
+              "current": {
+                "selected": true,
                 "text": "2m",
                 "value": "2m"
               },
@@ -734,18 +1197,77 @@ spec:
                 }
               ],
               "query": "2m, 5m, 10m",
+              "queryValue": "",
               "skipUrlSync": false,
               "type": "custom"
+            },
+            {
+              "current": {
+                "selected": true,
+                "text": "crossplane-system",
+                "value": "crossplane-system"
+              },
+              "description": "The Kubernetes namespace where providers and Crossplane pods reside.",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Provider Namespace",
+              "multi": false,
+              "name": "provider_namespace",
+              "options": [
+                {
+                  "selected": true,
+                  "text": "crossplane-system",
+                  "value": "crossplane-system"
+                },
+                {
+                  "selected": false,
+                  "text": "upbound-system",
+                  "value": "upbound-system"
+                }
+              ],
+              "query": "crossplane-system,upbound-system",
+              "queryValue": "",
+              "skipUrlSync": false,
+              "type": "custom"
+            },
+            {
+              "current": {
+                "selected": true,
+                "text": "upbound-metric-sample",
+                "value": "upbound-metric-sample"
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "definition": "metrics_crossplane_io_ClusterMetric_v1",
+              "description": "Cluster Metric Samples",
+              "hide": 0,
+              "includeAll": false,
+              "label": "Cluster Metric Samples",
+              "multi": false,
+              "name": "cluster_metric_samples",
+              "options": [],
+              "query": {
+                "query": "metrics_crossplane_io_ClusterMetric_v1",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "/,name=\\\"([^\\\"]+)\\\"/",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
             }
           ]
         },
         "time": {
-          "from": "now-30m",
+          "from": "now-5m",
           "to": "now"
         },
         "timepicker": {},
         "timezone": "",
         "title": "Crossplane Top Level View",
-        "version": 5,
+        "uid": "sg0yFc4Ik",
+        "version": 15,
         "weekStart": ""
       }
