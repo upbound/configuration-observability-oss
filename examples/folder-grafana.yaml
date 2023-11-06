@@ -5,3 +5,4 @@ metadata:
 spec:
   forProvider:
     title: 'Dashboards'
+
