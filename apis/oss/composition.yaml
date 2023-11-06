@@ -134,6 +134,12 @@ spec:
           patchSetName: common
         - fromFieldPath: spec.parameters.id
           toFieldPath: metadata.name
+        - fromFieldPath: metadata.labels
+          toFieldPath: metadata.labels
+        - fromFieldPath: metadata.annotations
+          toFieldPath: metadata.annotations
+        - fromFieldPath: spec.parameters.operators.prometheus.version
+          toFieldPath: spec.forProvider.chart.version
         - fromFieldPath: spec.parameters.id
           toFieldPath: metadata.annotations[crossplane.io/external-name]
           transforms:
@@ -143,12 +149,6 @@ spec:
                   - type: regexp
                     regexp: '.*'
                     result: oss
-        - fromFieldPath: metadata.labels
-          toFieldPath: metadata.labels
-        - fromFieldPath: metadata.annotations
-          toFieldPath: metadata.annotations
-        - fromFieldPath: spec.parameters.operators.prometheus.version
-          toFieldPath: spec.forProvider.chart.version
 
     - name: usagePrometheusByPodMonitorCrossplaneRbacManager
       base:
