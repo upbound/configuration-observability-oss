@@ -53,7 +53,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -102,7 +102,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1) + sum(tf_upbound_io_ProviderConfig_v1beta1) + sum(kubernetes_crossplane_io_Object_v1alpha1) + sum(kms_aws_upbound_io_Alias_v1beta1) + sum(lambda_aws_upbound_io_Invocation_v1beta1) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1)",
@@ -118,7 +118,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -166,7 +166,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1_synced) + sum(tf_upbound_io_ProviderConfig_v1beta1_synced) + sum(kubernetes_crossplane_io_Object_v1alpha1_synced) + sum(kms_aws_upbound_io_Alias_v1beta1_synced) + sum(lambda_aws_upbound_io_Invocation_v1beta1_synced) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1_synced)",
@@ -181,7 +181,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -229,7 +229,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(tf_upbound_io_Workspace_v1beta1_ready) + sum(tf_upbound_io_ProviderConfig_v1beta1_ready) + sum(kubernetes_crossplane_io_Object_v1alpha1_ready) + sum(kms_aws_upbound_io_Alias_v1beta1_ready) + sum(lambda_aws_upbound_io_Invocation_v1beta1_ready) + sum(rds_aws_upbound_io_ClusterParameterGroup_v1beta1_ready)",
@@ -244,7 +244,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -292,7 +292,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "count(apiextensions_crossplane_io_CompositeResourceDefinition_v1)",
@@ -307,7 +307,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -355,7 +355,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "count(apiextensions_crossplane_io_CompositeResourceDefinition_v1_synced)",
@@ -370,7 +370,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -418,7 +418,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "count(apiextensions_crossplane_io_CompositeResourceDefinition_v1_ready)",
@@ -433,7 +433,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -481,7 +481,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "count(pkg_crossplane_io_ProviderRevision_v1)",
@@ -496,7 +496,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -544,7 +544,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "upjet_resource_ttr_count{group=\"$group\",version=\"$version\",kind=\"$kind\"}",
@@ -559,7 +559,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "TTR Sum in Minutes.",
             "fieldConfig": {
@@ -608,7 +608,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "expr": "upjet_resource_ttr_sum{group=\"$group\",version=\"$version\",kind=\"$kind\"}/60",
@@ -636,7 +636,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "Preferred query:\nhistogram_quantile($quantile, sum(rate(upjet_resource_ttr_bucket{group=\"$group\",version=\"$version\",kind=\"$kind\"}[$interval])) by (le))",
             "fieldConfig": {
@@ -715,7 +715,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": true,
@@ -735,7 +735,7 @@ spec:
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
+              "uid": "prometheus"
             },
             "description": "",
             "fieldConfig": {
@@ -816,7 +816,7 @@ spec:
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "PBFA97CFB590B2093"
+                  "uid": "prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": true,
@@ -858,7 +858,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels",
               "description": "The Kubernetes namespace where the Crossplane resource claim was applied.",
@@ -886,7 +886,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels{label_crossplane_io_claim_namespace=\"$claim_namespace\"}",
               "description": "The name of the Crossplane resource claim.",
@@ -914,7 +914,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "kubernetes_crossplane_io_Object_v1alpha1_labels{label_crossplane_io_claim_name=\"$claim_name\"}",
               "description": "The name of the Crossplane composite resource (XR) that was created from a claim.",
@@ -1059,7 +1059,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "query_result(upjet_resource_ttr_bucket)",
               "description": "API group.",
@@ -1087,7 +1087,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "query_result(upjet_resource_ttr_bucket{group=\"$group\"})",
               "description": "API version.",
@@ -1115,7 +1115,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "query_result(upjet_resource_ttr_bucket{group=\"$group\"})",
               "description": "kind.",
@@ -1147,7 +1147,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "upjet_resource_ttr_bucket{group=\"$group\",kind=\"$kind\",version=\"$version\"}",
               "description": "Less equal.",
@@ -1238,7 +1238,7 @@ spec:
               },
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "prometheus"
               },
               "definition": "metrics_crossplane_io_ClusterMetric_v1",
               "description": "Cluster Metric Samples",
@@ -1267,7 +1267,6 @@ spec:
         "timepicker": {},
         "timezone": "",
         "title": "Crossplane Top Level View",
-        "uid": "sg0yFc4Ik",
         "version": 15,
         "weekStart": ""
       }

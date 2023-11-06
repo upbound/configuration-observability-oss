@@ -5,6 +5,20 @@ with open source software integrations such as Prometheus and Grafana.
 Observability is a measure of how well platform performance can be inferred
 from knowledge of its metrics, logs and traces outputs.
 
+**Warning**
+## Disclaimer: Management Cluster Resource Use
+Prometheus and Grafana may require significant cluster resources in relation
+to the amount of metrics scraped, processed and visualized. This may impact
+cluster operations. Consult the respective Prometheus Operator and
+Grafana documentation for set up guidance prior to using this configuration
+on mission critical Crossplane management clusters.
+
+**Warning**
+## Disclaimer: Metric Stability
+Crossplane has no concept of metric stability. This implies
+that metrics used in this configuration may be absent in future versions
+of Crossplane and / or its providers.
+
 ## Purpose
 The goal for configuration-observability-oss is to complement
 other configurations such as configuration-caas. See the
