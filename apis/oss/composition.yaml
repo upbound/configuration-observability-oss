@@ -22,7 +22,7 @@ spec:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
         metadata:
-          labels: 
+          labels:
             type: podMonitorCrossplaneRbacManager
         spec:
           forProvider:
@@ -53,7 +53,7 @@ spec:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
         metadata:
-          labels: 
+          labels:
             type: podMonitorCrossplane
         spec:
           forProvider:
@@ -84,7 +84,7 @@ spec:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
         metadata:
-          labels: 
+          labels:
             type: podMonitorCrossplaneProviders
         spec:
           forProvider:
@@ -114,6 +114,9 @@ spec:
       base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
+        metadata:
+          labels: 
+            type: podMonitorXmetrics
         spec:
           forProvider:
             manifest:
@@ -127,12 +130,14 @@ spec:
               spec:
                 namespaceSelector:
                   matchNames:
+                    - crossplane-system
+                    - upbound-system
                     - x-metrics
                 selector:
                   matchLabels:
                     app: x-metrics
                 podMetricsEndpoints:
-                  - port: http-prom
+                  - port: metrics
                     path: "/x-metrics"
       patches:
         - type: PatchSet
