@@ -17,12 +17,44 @@ spec:
           toFieldPath: spec.providerConfigRef.name
 
   resources:
+
+    - name: podMonitorXmetrics
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: Object
+        metadata:
+          labels:
+            type: podMonitorXmetrics
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: monitoring.coreos.com/v1
+              kind: PodMonitor
+              metadata:
+                name: x-metrics
+                namespace: operators
+                labels:
+                  app: x-metrics
+              spec:
+                namespaceSelector:
+                  matchNames:
+                    - x-metrics
+                selector:
+                  matchLabels:
+                    app: x-metrics
+                podMetricsEndpoints:
+                - port: http-prom
+                  path: "/x-metrics"
+      patches:
+        - type: PatchSet
+          patchSetName: common
+ 
     - name: podMonitorCrossplaneRbacManager
       base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
         metadata:
-          labels: 
+          labels:
             type: podMonitorCrossplaneRbacManager
         spec:
           forProvider:
@@ -53,7 +85,7 @@ spec:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
         metadata:
-          labels: 
+          labels:
             type: podMonitorCrossplane
         spec:
           forProvider:
@@ -84,7 +116,7 @@ spec:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
         metadata:
-          labels: 
+          labels:
             type: podMonitorCrossplaneProviders
         spec:
           forProvider:
@@ -149,6 +181,24 @@ spec:
                   - type: regexp
                     regexp: '.*'
                     result: oss
+
+    - name: usagePrometheusByPodMonitorXmetrics
+      base:
+        apiVersion: apiextensions.crossplane.io/v1alpha1
+        kind: Usage
+        spec:
+          of:
+            apiVersion: helm.crossplane.io/v1beta1
+            kind: Release
+            resourceSelector:
+              matchControllerRef: true
+          by:
+            apiVersion: kubernetes.crossplane.io/v1alpha1
+            kind: Object
+            resourceSelector:
+              matchControllerRef: true
+              matchLabels:
+                type: podMonitorXmetrics
 
     - name: usagePrometheusByPodMonitorCrossplaneRbacManager
       base:
