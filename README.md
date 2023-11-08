@@ -39,7 +39,6 @@ rely on the CRDs to be installed through the oss composition
 first.
 ```
 kubectl apply -f examples/oss.yaml
-kubectl apply -f examples/dashboards
 ```
 Wait until xmetrics CRDs have been installed, then apply
 the xmetrics configuration to see metrics flowing.
@@ -50,11 +49,7 @@ kubectl apply -f examples/xmetrics.yaml
 To load dashboards that are part of this configuration repository,
 please apply the following dashboard resource claims.
 ```
-kubectl apply -f examples/dashboards/folder-grafana.yaml
-kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-health.yaml
-kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-mr.yaml
-kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-resources-ttr.yaml
-kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-sli-metrics.yaml
+kubectl apply -f examples/dashboards
 ```
 
 Use the following to forward localhost:9090 to the Prometheus pod.
