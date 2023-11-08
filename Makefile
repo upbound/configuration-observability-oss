@@ -69,7 +69,7 @@ build.init: $(UP)
 #   You can check the basic implementation here: https://github.com/upbound/uptest/blob/main/internal/templates/01-delete.yaml.tmpl.
 uptest: $(UPTEST) $(KUBECTL) $(KUTTL)
 	@$(INFO) running automated tests
-	@KUBECTL=$(KUBECTL) KUTTL=$(KUTTL) $(UPTEST) e2e examples/folder-grafana.yaml,examples/dashboard-grafana-crossplane-health.yaml,examples/dashboard-grafana-crossplane-mr.yaml,examples/dashboard-grafana-crossplane-resources-ttr.yaml,examples/dashboard-grafana-crossplane-sli-metrics.yaml,examples/dashboard-grafana-crossplane-top-level.yaml,examples/dashboard-grafana-crossplane-xmetrics.yaml,examples/oss.yaml --setup-script=test/setup.sh --default-timeout=2400 || $(FAIL)
+	@KUBECTL=$(KUBECTL) KUTTL=$(KUTTL) $(UPTEST) e2e examples/dashboards/folder-grafana.yaml,examples/dashboards/dashboard-grafana-crossplane-health.yaml,examples/dashboards/dashboard-grafana-crossplane-mr.yaml,examples/dashboards/dashboard-grafana-crossplane-resources-ttr.yaml,examples/dashboards/dashboard-grafana-crossplane-sli-metrics.yaml,examples/dashboards/dashboard-grafana-crossplane-top-level.yaml,examples/dashboards/dashboard-grafana-crossplane-xmetrics.yaml,examples/oss.yaml --setup-script=test/setup.sh --default-timeout=2400 || $(FAIL)
 	@$(OK) running automated tests
 
 # This target requires the following environment variables to be set:
