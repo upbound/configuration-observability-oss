@@ -34,9 +34,17 @@ at the conclusion of the tests by default.
 
 Apply the resource claim as follows to re-create
 the namespace, Prometheus, Grafana and dependencies for further
-exploration.
+exploration. Note that the xmetrics configuration examples
+rely on the CRDs to be installed through the oss composition
+first.
 ```
 kubectl apply -f examples/oss.yaml
+kubectl apply -f examples/dashboards
+```
+Wait until xmetrics CRDs have been installed, then apply
+the xmetrics configuration to see metrics flowing.
+```
+kubectl apply -f examples/xmetrics.yaml
 ```
 
 To load dashboards that are part of this configuration repository,
@@ -51,20 +59,12 @@ kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-sli-metrics.ya
 
 Use the following to forward localhost:9090 to the Prometheus pod.
 ```
-PROMETHEUS_POD_NAME=$(k -n operators get pods|\
-    awk '{print $1}'|\
-    tail +2|\
-    grep prometheus-0)
-kubectl -n operators port-forward ${PROMETHEUS_POD_NAME} 9090
+kubectl -n operators port-forward prometheus-oss-kube-prometheus-stack-prometheus-0 9090
 ```
 
 Use the following to forward localhost:3000 to the Grafana pod.
 ```
-GRAFANA_POD_NAME=$(k -n operators get pods|\
-    awk '{print $1}'|\
-    tail +2|\
-    grep grafana)
-kubectl -n operators port-forward ${GRAFANA_POD_NAME} 3000
+kubectl -n operators port-forward svc/oss-grafana 3000:80
 ```
 
 Log in to Grafana at http://localhost:3000 with the credentials
