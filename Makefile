@@ -14,6 +14,8 @@ PLATFORMS ?= linux_amd64
 UP_VERSION = v0.21.0
 UP_CHANNEL = stable
 UPTEST_VERSION = v0.6.1
+UXP_INSTALL_OPTS = "--unstable"
+UXP_VERSION = 1.14.0-up.1.rc.2"
 
 -include build/makelib/k8s_tools.mk
 # ====================================================================================
