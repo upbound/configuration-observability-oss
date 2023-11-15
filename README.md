@@ -52,18 +52,20 @@ the xmetrics configuration to see metrics flowing.
 kubectl apply -f examples/xmetrics.yaml
 ```
 
-To load dashboards that are part of this configuration repository,
-please apply the following dashboard resource claims.
+The following command will apply all the dashboard
+resource claims located in the `dashboards` folder.
+Each claim installs a respective Grafana dashboard.
 ```
 kubectl apply -f examples/dashboards
 ```
 
-Use the following to forward localhost:9090 to the Prometheus pod.
+To access the Prometheus dashboard, port-forward
+to the the Prometheus services on port 9090.
 ```
-kubectl -n operators port-forward prometheus-oss-kube-prometheus-stack-prometheus-0 9090
+kubectl -n operators port-forward svc/oss-kube-prometheus-stack-prometheus 9090:9090
 ```
 
-Use the following to forward localhost:3000 to the Grafana pod.
+To access the Grafana dashboard, port-forward to the Grafana service on port 80.
 ```
 kubectl -n operators port-forward svc/oss-grafana 3000:80
 ```
