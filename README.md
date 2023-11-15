@@ -5,19 +5,26 @@ with open source software integrations such as Prometheus and Grafana.
 Observability is a measure of how well platform performance can be inferred
 from knowledge of its metrics, logs and traces outputs.
 
-**Warning**
-## Disclaimer: Management Cluster Resource Use
-Prometheus and Grafana may require significant cluster resources in relation
-to the amount of metrics scraped, processed and visualized. This may impact
-cluster operations. Consult the respective Prometheus Operator and
-Grafana documentation for set up guidance prior to using this configuration
-on mission critical Crossplane management clusters.
+## Note: Happily Operational Management Cluster
+This configuration provides useful insights into the
+health of Crossplane and its providers. To do so,
+it installs 3rd party open source software as part of
+its package. This software includes Prometheus and Grafana.
+Both are tunable to accomodate the arbitrary scale that
+may be needed based on the amount of resources for which
+metrics are collected and visualized. Take a look
+at the [Prometheus configuration options](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
+prior to applying this Crossplane observability
+configuration on mission critical clusters. Tune as appropriate
+for your use case to help keep your control planes happy
+and operational.
 
-**Warning**
-## Disclaimer: Metric Stability
-Crossplane has no concept of metric stability. This implies
-that metrics used in this configuration may be absent in future versions
-of Crossplane and / or its providers.
+## Note: Using Metrics With Confidence
+We are blessed with Crossplane and provider metrics endpoints
+that help us gain insight about their performance.
+Similar to early Kubernetes metrics APIs,
+Crossplane does not yet distinguish between alpha, beta and v1
+metrics endpoints. Metrics API evolution is expected over time.
 
 ## Purpose
 The goal for configuration-observability-oss is to complement
@@ -26,45 +33,39 @@ other configurations such as configuration-caas. See the
 additional configurations.
 
 ## Usage
-Run `make e2e` directly to exercise end to end tests
-for the observability integrations. After running the
-tests, the kind cluster will remain but the tests will
-clean up the operator namespace and delete the pods in it
-at the conclusion of the tests by default.
+Run `make cluster` to spin up a cluster with a
+Crossplane control plane.
 
-Apply the resource claim as follows to re-create
-the namespace, Prometheus, Grafana and dependencies for further
-exploration.
+Apply the resource claim as follows to create
+the namespace, Prometheus, Grafana and dependencies for
+exploration. Note that the xmetrics configuration examples
+rely on the CRDs to be installed through the oss composition
+first.
 ```
 kubectl apply -f examples/oss.yaml
 ```
-
-To load dashboards that are part of this configuration repository,
-please apply the following dashboard resource claims.
+Wait until xmetrics CRDs have been installed, then apply
+the xmetrics configuration to see metrics flowing.
 ```
-kubectl apply -f examples/dashboards/folder-grafana.yaml
-kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-health.yaml
-kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-mr.yaml
-kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-resources-ttr.yaml
-kubectl apply -f examples/dashboards/dashboard-grafana-crossplane-sli-metrics.yaml
+kubectl apply -f examples/xmetrics.yaml
 ```
 
-Use the following to forward localhost:9090 to the Prometheus pod.
+The following command will apply all the dashboard
+resource claims located in the `dashboards` folder.
+Each claim installs a respective Grafana dashboard.
 ```
-PROMETHEUS_POD_NAME=$(k -n operators get pods|\
-    awk '{print $1}'|\
-    tail +2|\
-    grep prometheus-0)
-kubectl -n operators port-forward ${PROMETHEUS_POD_NAME} 9090
+kubectl apply -f examples/dashboards
 ```
 
-Use the following to forward localhost:3000 to the Grafana pod.
+To access the Prometheus dashboard, port-forward
+to the the Prometheus services on port 9090.
 ```
-GRAFANA_POD_NAME=$(k -n operators get pods|\
-    awk '{print $1}'|\
-    tail +2|\
-    grep grafana)
-kubectl -n operators port-forward ${GRAFANA_POD_NAME} 3000
+kubectl -n operators port-forward svc/oss-kube-prometheus-stack-prometheus 9090:9090
+```
+
+To access the Grafana dashboard, port-forward to the Grafana service on port 80.
+```
+kubectl -n operators port-forward svc/oss-grafana 3000:80
 ```
 
 Log in to Grafana at http://localhost:3000 with the credentials
@@ -72,6 +73,15 @@ obtained from running the following.
 ```
 scripts/grafana-get-creds.sh
 ```
+
+#### Uptest
+Run `make e2e` to exercise end to end tests
+for the observability integrations. `make e2e`
+has no prerequisites, that is it does not require
+a previously created cluster. After running the
+tests, the kind cluster will remain but the tests will
+clean up the operator namespace and delete the pods in it
+at the conclusion of the tests by default.
 
 See example dashboards below.
 

@@ -1,0 +1,43 @@
+---
+apiVersion: metrics.crossplane.io/v1
+kind: ClusterMetric
+metadata:
+  name: clustermetric-sample
+spec:
+  matchName: ".crossplane.io"
+---
+apiVersion: metrics.crossplane.io/v1
+kind: Metric
+metadata:
+  name: metric-sample
+  namespace: upbound-system
+spec:
+    matchName: "metrics.metrics.crossplane.io"
+---
+apiVersion: metrics.crossplane.io/v1
+kind: ClusterMetric
+metadata:
+  name: upbound-metric-sample-aws-ec2
+spec:
+  matchName: ".ec2.aws.upbound.io"
+---
+apiVersion: metrics.crossplane.io/v1
+kind: ClusterMetric
+metadata:
+  name: upbound-metric-sample-aws-iam
+spec:
+  matchName: ".iam.aws.upbound.io"
+---
+apiVersion: metrics.crossplane.io/v1
+kind: ClusterMetric
+metadata:
+  name: upbound-metric-sample-aws-rds
+spec:
+  matchName: ".rds.aws.upbound.io"
+---
+apiVersion: metrics.crossplane.io/v1
+kind: ClusterMetric
+metadata:
+  name: upbound-metric-sample-aws-s3
+spec:
+  matchName: ".s3.aws.upbound.io"
