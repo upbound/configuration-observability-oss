@@ -36,6 +36,7 @@ XPKGS = $(PROJECT_NAME)
 
 CROSSPLANE_NAMESPACE = upbound-system
 CROSSPLANE_ARGS = "--enable-usages"
+KIND_CLUSTER_NAME = "crossplane-local-dev"
 -include build/makelib/local.xpkg.mk
 -include build/makelib/controlplane.mk
 
@@ -77,5 +78,7 @@ uptest: $(UPTEST) $(KUBECTL) $(KUTTL)
 # This target requires the following environment variables to be set:
 # - UPTEST_CLOUD_CREDENTIALS, cloud credentials for the provider being tested, e.g. export UPTEST_CLOUD_CREDENTIALS=$(cat ~/.aws/credentials)
 e2e: build controlplane.up local.xpkg.deploy.configuration.$(PROJECT_NAME) uptest
+
+cluster: build controlplane.up local.xpkg.deploy.configuration.$(PROJECT_NAME)
 
 .PHONY: uptest e2e
