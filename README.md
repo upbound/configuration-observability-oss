@@ -5,8 +5,7 @@ with open source software integrations such as Prometheus and Grafana.
 Observability is a measure of how well platform performance can be inferred
 from knowledge of its metrics, logs and traces outputs.
 
-**Note**
-## Disclaimer: Happily Operational Management Cluster
+## Note: Happily Operational Management Cluster
 This configuration provides useful insights into the
 health of Crossplane and its providers. To do so,
 it installs 3rd party open source software as part of
@@ -20,8 +19,7 @@ configuration on mission critical clusters. Tune as appropriate
 for your use case to help keep your control planes happy
 and operational.
 
-**Note**
-## Disclaimer: Using Metrics With Confidence
+## Note: Using Metrics With Confidence
 We are blessed with Crossplane and provider metrics endpoints
 that help us gain insight about their performance.
 Similar to early Kubernetes metrics APIs,
