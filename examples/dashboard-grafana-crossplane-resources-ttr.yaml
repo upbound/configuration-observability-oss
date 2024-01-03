@@ -3,6 +3,7 @@ kind: Dashboard
 metadata:
   name: crossplane-resources-ttr
 spec:
+  deletionPolicy: Orphan
   forProvider:
     folderRef:
       name:  configuration-observability-oss
