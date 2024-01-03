@@ -13,7 +13,7 @@ PLATFORMS ?= linux_amd64
 
 UP_VERSION = v0.21.0
 UP_CHANNEL = stable
-UPTEST_VERSION = v0.6.1
+UPTEST_VERSION = v0.9.0
 
 -include build/makelib/k8s_tools.mk
 # ====================================================================================
@@ -69,7 +69,7 @@ build.init: $(UP)
 #   You can check the basic implementation here: https://github.com/upbound/uptest/blob/main/internal/templates/01-delete.yaml.tmpl.
 uptest: $(UPTEST) $(KUBECTL) $(KUTTL)
 	@$(INFO) running automated tests
-	@KUBECTL=$(KUBECTL) KUTTL=$(KUTTL) $(UPTEST) e2e examples/folder-grafana.yaml,examples/dashboard-grafana-crossplane-health.yaml,examples/dashboard-grafana-crossplane-mr.yaml,examples/dashboard-grafana-crossplane-resources-ttr.yaml,examples/dashboard-grafana-crossplane-sli-metrics.yaml,examples/dashboard-grafana-crossplane-top-level.yaml,examples/dashboard-grafana-crossplane-xmetrics.yaml,examples/oss.yaml --setup-script=test/setup.sh --default-timeout=2400 || $(FAIL)
+	@KUBECTL=$(KUBECTL) KUTTL=$(KUTTL) CROSSPLANE_NAMESPACE=$(CROSSPLANE_NAMESPACE) $(UPTEST) e2e examples/folder-grafana.yaml,examples/dashboard-grafana-crossplane-health.yaml,examples/dashboard-grafana-crossplane-mr.yaml,examples/dashboard-grafana-crossplane-resources-ttr.yaml,examples/dashboard-grafana-crossplane-sli-metrics.yaml,examples/dashboard-grafana-crossplane-top-level.yaml,examples/dashboard-grafana-crossplane-xmetrics.yaml,examples/oss.yaml --setup-script=test/setup.sh --default-timeout=2400 || $(FAIL)
 	@$(OK) running automated tests
 
 # This target requires the following environment variables to be set:

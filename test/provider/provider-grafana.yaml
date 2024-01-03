@@ -3,6 +3,6 @@ kind: Provider
 metadata:
   name: grafana-provider-grafana
 spec:
-  package: xpkg.upbound.io/grafana/provider-grafana:v0.7.0
+  package: xpkg.upbound.io/grafana/provider-grafana:v0.8.0
   controllerConfigRef:
     name: oss-controller-config
