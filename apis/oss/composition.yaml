@@ -155,13 +155,13 @@ spec:
                 fromFieldPath: spec.parameters.id
                 toFieldPath: metadata.annotations[crossplane.io/external-name]
                 transforms:
-                - type: match
-                  match:
-                    fallbackValue: null
-                    patterns:
-                    - type: regexp
-                      regexp: .*
-                      result: oss
+                  - type: match
+                    match:
+                      fallbackValue: null
+                      patterns:
+                        - type: regexp
+                          regexp: .*
+                          result: oss
 
           - name: usagePrometheusByPodMonitorCrossplaneRbacManager
             base:
@@ -215,4 +215,4 @@ spec:
                   apiVersion: helm.crossplane.io/v1beta1
                   kind: Release
                   resourceSelector:
-                    matchControllerRef: true  
+                    matchControllerRef: true
