@@ -32,6 +32,6 @@ spec:
     - provider: xpkg.upbound.io/grafana/provider-grafana
       # renovate: datasource=github-releases depName=grafana/crossplane-provider-grafana
       version : "v0.8.0"
-    - function: xpkg.upbound.io/upbound/function-patch-and-transform
-      # renovate: datasource=github-releases depName=upbound/function-patch-and-transform
+    - function: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform
+      # renovate: datasource=github-releases depName=crossplane-contrib/function-patch-and-transform
       version: "v0.2.1"
