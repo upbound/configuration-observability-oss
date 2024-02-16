@@ -26,7 +26,7 @@ spec:
         resources:
           - name: podMonitorCrossplaneRbacManager
             base:
-              apiVersion: kubernetes.crossplane.io/v1alpha1
+              apiVersion: kubernetes.crossplane.io/v1alpha2
               kind: Object
               metadata:
                 labels:
@@ -57,7 +57,7 @@ spec:
 
           - name: podMonitorCrossplane
             base:
-              apiVersion: kubernetes.crossplane.io/v1alpha1
+              apiVersion: kubernetes.crossplane.io/v1alpha2
               kind: Object
               metadata:
                 labels:
@@ -88,7 +88,7 @@ spec:
 
           - name: podMonitorCrossplaneProviders
             base:
-              apiVersion: kubernetes.crossplane.io/v1alpha1
+              apiVersion: kubernetes.crossplane.io/v1alpha2
               kind: Object
               metadata:
                 labels:
@@ -169,7 +169,7 @@ spec:
               kind: Usage
               spec:
                 by:
-                  apiVersion: kubernetes.crossplane.io/v1alpha1
+                  apiVersion: kubernetes.crossplane.io/v1alpha2
                   kind: Object
                   resourceSelector:
                     matchControllerRef: true
@@ -187,7 +187,7 @@ spec:
               kind: Usage
               spec:
                 by:
-                  apiVersion: kubernetes.crossplane.io/v1alpha1
+                  apiVersion: kubernetes.crossplane.io/v1alpha2
                   kind: Object
                   resourceSelector:
                     matchControllerRef: true
@@ -205,7 +205,7 @@ spec:
               kind: Usage
               spec:
                 by:
-                  apiVersion: kubernetes.crossplane.io/v1alpha1
+                  apiVersion: kubernetes.crossplane.io/v1alpha2
                   kind: Object
                   resourceSelector:
                     matchControllerRef: true
