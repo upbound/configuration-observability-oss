@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: yamllint
-        uses: reviewdog/action-yamllint@e419e43894e391d358ebf996800673d72de6c69b # v1.11.0
+        uses: reviewdog/action-yamllint@c23c5d4cd45b5cc16fa3e6e34073068b228cabeb # v1.17.0
         with:
           reporter: github-pr-review
           filter_mode: nofilter
