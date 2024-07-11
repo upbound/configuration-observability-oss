@@ -28,7 +28,7 @@ spec:
       version: "v0.17.0"
     - provider: xpkg.upbound.io/crossplane-contrib/provider-kubernetes
       # renovate: datasource=github-releases depName=crossplane-contrib/provider-kubernetes
-      version: "v0.12.1"
+      version: "v0.14.0"
     - provider: xpkg.upbound.io/grafana/provider-grafana
       # renovate: datasource=github-releases depName=grafana/crossplane-provider-grafana
       version : "v0.8.0"
