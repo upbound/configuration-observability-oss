@@ -1,9 +1,19 @@
+---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-aws-account
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-account:v1.11.0
+  controllerConfigRef:
+    name: oss-controller-config
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-dynamodb
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-dynamodb:v1.11.0
   controllerConfigRef:
     name: oss-controller-config
 ---
