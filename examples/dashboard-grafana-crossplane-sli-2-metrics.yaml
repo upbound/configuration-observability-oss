@@ -1,0 +1,1351 @@
+apiVersion: oss.grafana.crossplane.io/v1alpha1
+kind: Dashboard
+metadata:
+  name: crossplane-sli-2-metrics
+spec:
+  deletionPolicy: Orphan
+  forProvider:
+    folderRef:
+      name:  configuration-observability-oss
+    configJson: |
+      {
+        "annotations": {
+          "list": [
+            {
+              "builtIn": 1,
+              "datasource": {
+                "type": "grafana",
+                "uid": "-- Grafana --"
+              },
+              "enable": true,
+              "hide": true,
+              "iconColor": "rgba(0, 211, 255, 1)",
+              "name": "Annotations & Alerts",
+              "type": "dashboard"
+            }
+          ]
+        },
+        "editable": true,
+        "fiscalYearStartMonth": 0,
+        "gnetId": 19358,
+        "graphTooltip": 0,
+        "id": 28,
+        "links": [],
+        "liveNow": false,
+        "panels": [
+          {
+            "collapsed": false,
+            "gridPos": {
+              "h": 1,
+              "w": 24,
+              "x": 0,
+              "y": 0
+            },
+            "id": 63,
+            "panels": [],
+            "title": "MR SLI Metrics",
+            "type": "row"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "continuous-GrYlRd"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "percentage",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 8,
+              "x": 0,
+              "y": 1
+            },
+            "id": 70,
+            "options": {
+              "displayMode": "lcd",
+              "maxVizHeight": 300,
+              "minVizHeight": 16,
+              "minVizWidth": 8,
+              "namePlacement": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showUnfilled": true,
+              "sizing": "auto",
+              "text": {
+                "titleSize": 12
+              },
+              "valueMode": "color"
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "editorMode": "code",
+                "expr": "avg by (gvk) (crossplane_managed_resource_first_time_to_reconcile_seconds_bucket)",
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "First-Time-To-Reconcile",
+            "type": "bargauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "continuous-GrYlRd"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "percentage",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 8,
+              "x": 8,
+              "y": 1
+            },
+            "id": 71,
+            "options": {
+              "displayMode": "lcd",
+              "maxVizHeight": 300,
+              "minVizHeight": 16,
+              "minVizWidth": 8,
+              "namePlacement": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showUnfilled": true,
+              "sizing": "auto",
+              "text": {
+                "titleSize": 12
+              },
+              "valueMode": "color"
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "editorMode": "code",
+                "expr": "avg by(gvk)(crossplane_managed_resource_first_time_to_readiness_seconds_bucket)",
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "First-Time-To_Readiness",
+            "type": "bargauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 16,
+              "x": 0,
+              "y": 9
+            },
+            "id": 56,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "maxHeight": 600,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "disableTextWrap": false,
+                "editorMode": "builder",
+                "expr": "sum(crossplane_managed_resource_exists)",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "Total MR Count",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 4,
+              "x": 0,
+              "y": 17
+            },
+            "id": 57,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "maxHeight": 600,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "disableTextWrap": false,
+                "editorMode": "builder",
+                "expr": "sum(crossplane_managed_resource_synced)",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "Synced MR Count",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 4,
+              "x": 4,
+              "y": 17
+            },
+            "id": 58,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "maxHeight": 600,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "11.0.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "disableTextWrap": false,
+                "editorMode": "code",
+                "expr": "sum(crossplane_managed_resource_exists) - sum(crossplane_managed_resource_synced)\n\n",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "Synced False MR Count",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 4,
+              "x": 8,
+              "y": 17
+            },
+            "id": 74,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "maxHeight": 600,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "disableTextWrap": false,
+                "editorMode": "builder",
+                "expr": "sum(crossplane_managed_resource_ready)",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "Ready MR Count",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 4,
+              "x": 12,
+              "y": 17
+            },
+            "id": 60,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "maxHeight": 600,
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "11.0.0",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "editorMode": "code",
+                "expr": "sum(crossplane_managed_resource_exists) - sum(crossplane_managed_resource_ready)",
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Ready False MR Count",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 4,
+              "x": 0,
+              "y": 23
+            },
+            "id": 75,
+            "options": {
+              "minVizHeight": 75,
+              "minVizWidth": 75,
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true,
+              "sizing": "auto"
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "disableTextWrap": false,
+                "editorMode": "builder",
+                "expr": "sum(crossplane_managed_resource_synced)",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "Synced MR Count",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 4,
+              "x": 4,
+              "y": 23
+            },
+            "id": 76,
+            "options": {
+              "minVizHeight": 75,
+              "minVizWidth": 75,
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true,
+              "sizing": "auto"
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "disableTextWrap": false,
+                "editorMode": "code",
+                "expr": "sum(crossplane_managed_resource_exists) - sum(crossplane_managed_resource_synced)\n\n",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "Synced False MR Count",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 4,
+              "x": 8,
+              "y": 23
+            },
+            "id": 77,
+            "options": {
+              "minVizHeight": 75,
+              "minVizWidth": 75,
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true,
+              "sizing": "auto"
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "disableTextWrap": false,
+                "editorMode": "builder",
+                "expr": "sum(crossplane_managed_resource_ready)",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "Ready MR Count",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 4,
+              "x": 12,
+              "y": 23
+            },
+            "id": 78,
+            "options": {
+              "minVizHeight": 75,
+              "minVizWidth": 75,
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true,
+              "sizing": "auto"
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "editorMode": "code",
+                "expr": "sum(crossplane_managed_resource_exists) - sum(crossplane_managed_resource_ready)",
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Ready False MR Count",
+            "type": "gauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "continuous-GrYlRd"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "percentage",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 8,
+              "x": 0,
+              "y": 29
+            },
+            "id": 69,
+            "options": {
+              "displayMode": "lcd",
+              "maxVizHeight": 300,
+              "minVizHeight": 16,
+              "minVizWidth": 8,
+              "namePlacement": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showUnfilled": true,
+              "sizing": "auto",
+              "text": {
+                "titleSize": 12
+              },
+              "valueMode": "color"
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "editorMode": "code",
+                "expr": "avg by (gvk)(crossplane_managed_resource_deletion_seconds_bucket)\n",
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Time-to-Delete",
+            "type": "bargauge"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "percentage",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 8,
+              "x": 8,
+              "y": 29
+            },
+            "id": 72,
+            "options": {
+              "displayMode": "gradient",
+              "maxVizHeight": 300,
+              "minVizHeight": 16,
+              "minVizWidth": 8,
+              "namePlacement": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showUnfilled": true,
+              "sizing": "auto",
+              "text": {
+                "titleSize": 12
+              },
+              "valueMode": "color"
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+                },
+                "editorMode": "code",
+                "expr": "avg by (gvk)(crossplane_managed_resource_drift_seconds_bucket)",
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Drift Catch",
+            "type": "bargauge"
+          },
+          {
+            "collapsed": false,
+            "gridPos": {
+              "h": 1,
+              "w": 24,
+              "x": 0,
+              "y": 37
+            },
+            "id": 47,
+            "panels": [],
+            "title": "Control Plane Availability",
+            "type": "row"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "description": "Host Cluster status of running pods. ",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "scaleDistribution": {
+                    "type": "linear"
+                  }
+                },
+                "unitScale": true
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 9,
+              "w": 16,
+              "x": 0,
+              "y": 38
+            },
+            "id": 54,
+            "options": {
+              "calculate": false,
+              "cellGap": 1,
+              "color": {
+                "exponent": 0.5,
+                "fill": "dark-orange",
+                "max": 1,
+                "min": 1,
+                "mode": "scheme",
+                "reverse": false,
+                "scale": "exponential",
+                "scheme": "PiYG",
+                "steps": 8
+              },
+              "exemplars": {
+                "color": "rgba(255,0,255,0.7)"
+              },
+              "filterValues": {
+                "le": 1e-9
+              },
+              "legend": {
+                "show": false
+              },
+              "rowsFrame": {
+                "layout": "auto",
+                "value": "Up"
+              },
+              "tooltip": {
+                "maxHeight": 600,
+                "mode": "single",
+                "showColorScale": false,
+                "yHistogram": true
+              },
+              "yAxis": {
+                "axisPlacement": "left",
+                "reverse": false
+              }
+            },
+            "pluginVersion": "10.3.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "e0035a8b-37f1-4d91-93e2-99881accc75f"
+                },
+                "disableTextWrap": false,
+                "editorMode": "builder",
+                "expr": "sum without(service, uid) (kube_pod_container_status_running{namespace=\"crossplane-system\"}) >= 1",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "{{pod}}/{{container}}",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "Pods Running",
+            "transparent": true,
+            "type": "heatmap"
+          }
+        ],
+        "refresh": "5s",
+        "schemaVersion": 39,
+        "tags": [],
+        "templating": {
+          "list": [
+            {
+              "current": {
+                "selected": false,
+                "text": "default",
+                "value": "default"
+              },
+              "hide": 0,
+              "includeAll": false,
+              "label": "Data Source",
+              "multi": false,
+              "name": "datasource",
+              "options": [],
+              "query": "prometheus",
+              "queryValue": "",
+              "refresh": 1,
+              "regex": "",
+              "skipUrlSync": false,
+              "type": "datasource"
+            },
+            {
+              "current": {
+                "isNone": true,
+                "selected": false,
+                "text": "None",
+                "value": ""
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "definition": "",
+              "hide": 2,
+              "includeAll": false,
+              "multi": false,
+              "name": "cluster",
+              "options": [],
+              "query": "label_values(up{job=\"kube-state-metrics\"}, cluster)",
+              "refresh": 2,
+              "regex": "",
+              "skipUrlSync": false,
+              "sort": 1,
+              "tagValuesQuery": "",
+              "tagsQuery": "",
+              "type": "query",
+              "useTags": false
+            },
+            {
+              "hide": 2,
+              "label": "",
+              "name": "namespace",
+              "query": "crossplane-system",
+              "skipUrlSync": false,
+              "type": "constant"
+            },
+            {
+              "current": {
+                "selected": false,
+                "text": "crossplane-b9cf86d78-mjmc4",
+                "value": "crossplane-b9cf86d78-mjmc4"
+              },
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "definition": "",
+              "hide": 0,
+              "includeAll": false,
+              "multi": false,
+              "name": "pod",
+              "options": [],
+              "query": "label_values(kube_pod_info{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\"}, pod)",
+              "refresh": 2,
+              "regex": "/(crossplane.*|provider.*|vcluster-api.*|vcluster-etcd.*)/",
+              "skipUrlSync": false,
+              "sort": 1,
+              "tagValuesQuery": "",
+              "tagsQuery": "",
+              "type": "query",
+              "useTags": false
+            }
+          ]
+        },
+        "time": {
+          "from": "now-5m",
+          "to": "now"
+        },
+        "timepicker": {
+          "refresh_intervals": [
+            "5s",
+            "10s",
+            "30s",
+            "1m",
+            "5m",
+            "15m",
+            "30m",
+            "1h",
+            "2h",
+            "1d"
+          ],
+          "time_options": [
+            "5m",
+            "15m",
+            "1h",
+            "6h",
+            "12h",
+            "24h",
+            "2d",
+            "7d",
+            "30d"
+          ]
+        },
+        "timezone": "utc",
+        "title": "Crossplane Metrics",
+        "uid": "df137bf6-642e-45a2-bce5-3696a9aee94f",
+        "version": 7,
+        "weekStart": ""
+      }
