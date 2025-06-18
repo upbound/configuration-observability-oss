@@ -1,0 +1,11 @@
+apiVersion: observe.platform.upbound.io/v1alpha1
+kind: XOss
+metadata:
+  name: test-xoss
+spec:
+  parameters:
+    id: test-cluster
+    operators:
+      prometheus:
+        version: "52.1.0"
+    deletionPolicy: Delete

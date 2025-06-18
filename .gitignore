@@ -6,3 +6,4 @@
 
 *.xpkg
 kubeconfig
+.up
