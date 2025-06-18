@@ -30,6 +30,7 @@ jobs:
           api-token: ${{ secrets.UP_API_TOKEN }}
           organization: ${{ secrets.UP_ORG }}
 
+      # doesn't work with plain token when pushing otherwise
       - name: Login to xpkg with robot
         uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
         with:
@@ -43,4 +44,5 @@ jobs:
         with:
           push-project: true
           tag: ${{ inputs.version || '' }}
+          # login-check does `up org list` which doesn't work with a robot-token
           skip-login-check: true

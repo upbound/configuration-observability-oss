@@ -1,6 +1,9 @@
 name: End to End Testing
 
 on:
+  # https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/
+  # pull_request_target is potentially dangerous target so we keep it strict
+  # under the label and benefit from secret propagation
   pull_request_target:
     types:
       - synchronize
@@ -30,6 +33,7 @@ jobs:
           api-token: ${{ env.UP_API_TOKEN }}
           organization: ${{ env.UP_ORG }}
 
+      # doesn't work with plain token when pushing otherwise
       - name: Login to xpkg with robot
         uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
         with:
