@@ -1,5 +1,9 @@
 
-oxr = option("params").oxr # observed composite resource
+import models.io.upbound.platform.observe.v1alpha1 as observev1alpha1
+import models.io.crossplane.helm.v1beta1 as helmv1beta1
+import models.io.crossplane.kubernetes.v1alpha2 as kubernetesv1alpha2
+
+oxr = observev1alpha1.XOss{**option("params").oxr}
 
 _metadata = lambda name: str -> any {
     {
@@ -14,9 +18,7 @@ _deletionPolicy = oxr.spec?.parameters?.deletionPolicy
 _prometheusVersion = oxr.spec?.parameters?.operators?.prometheus?.version or "52.1.0"
 
 # PodMonitor for Crossplane RBAC Manager
-_pod_monitor_rbac_manager = {
-    apiVersion = "kubernetes.crossplane.io/v1alpha2"
-    kind = "Object"
+_pod_monitor_rbac_manager = kubernetesv1alpha2.Object{
     metadata = _metadata("podMonitorCrossplaneRbacManager") | {
         labels = { type = "podMonitorCrossplaneRbacManager" }
     }
@@ -49,9 +51,7 @@ _pod_monitor_rbac_manager = {
 }
 
 # PodMonitor for Crossplane
-_pod_monitor_crossplane = {
-    apiVersion = "kubernetes.crossplane.io/v1alpha2"
-    kind = "Object"
+_pod_monitor_crossplane = kubernetesv1alpha2.Object{
     metadata = _metadata("podMonitorCrossplane") | {
         labels = { type = "podMonitorCrossplane" }
     }
@@ -84,9 +84,7 @@ _pod_monitor_crossplane = {
 }
 
 # PodMonitor for Crossplane Providers
-_pod_monitor_providers = {
-    apiVersion = "kubernetes.crossplane.io/v1alpha2"
-    kind = "Object"
+_pod_monitor_providers = kubernetesv1alpha2.Object{
     metadata = _metadata("podMonitorCrossplaneProviders") | {
         labels = { type = "podMonitorCrossplaneProviders" }
     }
@@ -119,9 +117,7 @@ _pod_monitor_providers = {
 }
 
 # Prometheus Helm Release
-_prometheus_release = {
-    apiVersion = "helm.crossplane.io/v1beta1"
-    kind = "Release"
+_prometheus_release = helmv1beta1.Release{
     metadata = _metadata("releasePrometheus") | {
         labels = oxr.metadata?.labels or {}
         annotations = (oxr.metadata?.annotations or {}) | {
