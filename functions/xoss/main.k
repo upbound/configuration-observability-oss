@@ -1,19 +1,16 @@
 
 oxr = option("params").oxr # observed composite resource
-_ocds = option("params").ocds # observed composed resources
-_dxr = option("params").dxr # desired composite resource
-dcds = option("params").dcds # desired composed resources
 
 _metadata = lambda name: str -> any {
-    { 
+    {
         name = name.lower() + "-" + _id.lower()
         annotations = { "krm.kcl.dev/composition-resource-name" = name }
     }
 }
 
 # Extract parameters from the composite resource
-_id = oxr.spec?.parameters?.id or "default"
-_deletionPolicy = oxr.spec?.parameters?.deletionPolicy or "Delete"
+_id = oxr.spec?.parameters?.id
+_deletionPolicy = oxr.spec?.parameters?.deletionPolicy
 _prometheusVersion = oxr.spec?.parameters?.operators?.prometheus?.version or "52.1.0"
 
 # PodMonitor for Crossplane RBAC Manager
