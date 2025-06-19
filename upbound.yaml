@@ -19,5 +19,5 @@ spec:
   maintainer: Upbound <support@upbound.io>
   readme: |
     Configuration to Set Up Crossplane, Provider and Resource Observability with open source software integrations such as Prometheus and Grafana.
-  repository: xpkg.upbound.io/solutions/configuration-observability-oss
+  repository: xpkg.upbound.io/upbound/configuration-observability-oss
   source: github.com/upbound/configuration-observability-oss

@@ -9,7 +9,7 @@ spec:
   mode: Pipeline
   pipeline:
   - functionRef:
-      name: solutions-configuration-observability-ossxoss
+      name: upbound-configuration-observability-ossxoss
     step: xoss
   - functionRef:
       name: crossplane-contrib-function-auto-ready
