@@ -85,6 +85,7 @@ _items = [
                                 version: "52.1.0"
                             }
                             namespace: "operators"
+                            wait: False
                             values.prometheus.prometheusSpec = {
                                 podMonitorSelectorNilUsesHelmValues: False
                                 probeSelectorNilUsesHelmValues: False
@@ -92,7 +93,7 @@ _items = [
                                 serviceMonitorSelectorNilUsesHelmValues: False
                             }
                         }
-                        rollbackLimit: 3
+                        rollbackLimit: 10
                     }
                 }
             ]
