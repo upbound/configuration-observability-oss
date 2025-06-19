@@ -136,6 +136,8 @@ _prometheus_release = helmv1beta1.Release{
                 version = _prometheusVersion
             }
             namespace = "operators"
+            wait = True
+            waitTimeout = "600s"
             values = {
                 prometheus = {
                     prometheusSpec = {

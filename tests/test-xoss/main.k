@@ -85,6 +85,8 @@ _items = [
                                 version: "52.1.0"
                             }
                             namespace: "operators"
+                            wait: True
+                            waitTimeout: "600s"
                             values.prometheus.prometheusSpec = {
                                 podMonitorSelectorNilUsesHelmValues: False
                                 probeSelectorNilUsesHelmValues: False
