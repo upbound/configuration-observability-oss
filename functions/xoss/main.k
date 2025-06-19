@@ -128,7 +128,7 @@ _prometheus_release = helmv1beta1.Release{
         deletionPolicy = _deletionPolicy
         providerConfigRef = { name = _id }
         managementPolicies = ["*"]
-        rollbackLimit = 3
+        rollbackLimit = 10
         forProvider = {
             chart = {
                 name = "kube-prometheus-stack"
@@ -136,8 +136,7 @@ _prometheus_release = helmv1beta1.Release{
                 version = _prometheusVersion
             }
             namespace = "operators"
-            wait = True
-            waitTimeout = "600s"
+            wait = False
             values = {
                 prometheus = {
                     prometheusSpec = {
