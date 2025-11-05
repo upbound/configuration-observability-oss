@@ -3,7 +3,7 @@ import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
 
 _items = [
     metav1alpha1.E2ETest{
-        metadata.name: "e2etest-xoss"
+        metadata.name: "e2etest-oss"
         spec= {
             crossplane.autoUpgrade.channel: "Rapid"
             defaultConditions: ["Ready"]
@@ -18,8 +18,8 @@ _items = [
                     }
                     spec.parameters = {
                         id: "uptest-observability-oss-cluster"
-                        operators.prometheus.version: "52.1.0"
-                        deletionPolicy: "Delete"
+                        operators.prometheus.version: "79.1.1"
+                        managementPolicies: ["*"]
                     }
                 }
             ]
@@ -29,7 +29,7 @@ _items = [
                     apiVersion: "pkg.crossplane.io/v1"
                     kind: "Configuration"
                     metadata.name: "configuration-aws-eks"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v0.18.2"
+                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v0.21.0"
                 },
 
                 # AWS Network Configuration

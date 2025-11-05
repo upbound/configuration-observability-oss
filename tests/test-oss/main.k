@@ -1,17 +1,16 @@
 
-import models.io.crossplane.helm.v1beta1 as helmv1beta1
-import models.io.crossplane.kubernetes.v1alpha2 as kubernetesv1alpha2
+import models.io.crossplane.helmm.v1beta1 as helmv1beta1
+import models.io.crossplane.kubernetesm.v1alpha1 as kubernetesv1alpha1
 import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
-import models.observe.platform.upbound.io.v1alpha1 as ossv1alpha1
 
 _items = [
     metav1alpha1.CompositionTest{
-        metadata.name: "test-xoss"
+        metadata.name: "Test-1 - For Composing Oss Resources"
         spec= {
             assertResources: [
                 # Assert that PodMonitor for Crossplane RBAC Manager is created
-                kubernetesv1alpha2.Object{
-                    apiVersion: "kubernetes.crossplane.io/v1alpha2"
+                kubernetesv1alpha1.Object{
+                    apiVersion: "kubernetes.m.crossplane.io/v1alpha1"
                     kind: "Object"
                     metadata.name: "podmonitorcrossplanerbacmanager-test-cluster"
                     metadata.labels.type: "podMonitorCrossplaneRbacManager"
@@ -31,8 +30,8 @@ _items = [
                 },
 
                 # Assert that PodMonitor for Crossplane is created
-                kubernetesv1alpha2.Object{
-                    apiVersion: "kubernetes.crossplane.io/v1alpha2"
+                kubernetesv1alpha1.Object{
+                    apiVersion: "kubernetes.m.crossplane.io/v1alpha1"
                     kind: "Object"
                     metadata.name: "podmonitorcrossplane-test-cluster"
                     metadata.labels.type: "podMonitorCrossplane"
@@ -52,8 +51,8 @@ _items = [
                 },
 
                 # Assert that PodMonitor for Crossplane Providers is created
-                kubernetesv1alpha2.Object{
-                    apiVersion: "kubernetes.crossplane.io/v1alpha2"
+                kubernetesv1alpha1.Object{
+                    apiVersion: "kubernetes.m.crossplane.io/v1alpha1"
                     kind: "Object"
                     metadata.name: "podmonitorcrossplaneproviders-test-cluster"
                     metadata.labels.type: "podMonitorCrossplaneProviders"
@@ -74,7 +73,7 @@ _items = [
 
                 # Assert that Prometheus Helm Release is created
                 helmv1beta1.Release{
-                    apiVersion: "helm.crossplane.io/v1beta1"
+                    apiVersion: "helm.m.crossplane.io/v1beta1"
                     kind: "Release"
                     metadata.name: "releaseprometheus-test-cluster"
                     spec = {
@@ -82,7 +81,7 @@ _items = [
                             chart = {
                                 name: "kube-prometheus-stack"
                                 repository: "https://prometheus-community.github.io/helm-charts"
-                                version: "52.1.0"
+                                version: "79.1.1"
                             }
                             namespace: "operators"
                             wait: False

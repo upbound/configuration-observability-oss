@@ -1,18 +1,27 @@
-apiVersion: meta.dev.upbound.io/v1alpha1
+apiVersion: meta.dev.upbound.io/v2alpha1
 kind: Project
 metadata:
   name: configuration-observability-oss
 spec:
   dependsOn:
-  - provider: xpkg.upbound.io/upbound/provider-helm
-    version: v0
-  - provider: xpkg.upbound.io/upbound/provider-kubernetes
-    version: v0
-  - provider: xpkg.upbound.io/grafana/provider-grafana
-    version: v0.8.0
-  - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    package: xpkg.upbound.io/upbound/provider-helm
+    version: v1
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    package: xpkg.upbound.io/upbound/provider-kubernetes
+    version: v1
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    package: xpkg.upbound.io/grafana/provider-grafana
+    version: v0.40.0
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Function
+    package: xpkg.upbound.io/crossplane-contrib/function-auto-ready
     version: '>=v0.4.0'
-  description: A Crossplane Observability Reference Configuration For Open Source Software Integrations
+  description: A Crossplane Observability Reference Configuration For Open Source
+    Software Integrations
   license: Apache-2.0
   maintainer: Upbound <support@upbound.io>
   readme: |

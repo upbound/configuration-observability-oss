@@ -1,14 +1,12 @@
-apiVersion: apiextensions.crossplane.io/v1
+apiVersion: apiextensions.crossplane.io/v2
 kind: CompositeResourceDefinition
 metadata:
-  name: xosss.observe.platform.upbound.io
+  name: osss.observe.platform.upbound.io
 spec:
+  scope: Namespaced
   defaultCompositeDeletePolicy: Foreground
   group: observe.platform.upbound.io
   names:
-    kind: XOss
-    plural: xosss
-  claimNames:
     kind: Oss
     plural: osss
   versions:
@@ -40,13 +38,18 @@ spec:
                             version:
                               type: string
                               description: Prometheus chart version.
-                    deletionPolicy:
-                      description: When the Composition is deleleted, delelete the AWS resources. Defaults to Delete
-                      enum:
-                        - Delete
-                        - Orphan
-                      type: string
-                      default: Delete
+                    managementPolicies:
+                      description: ManagementPolicies for the RDS resources. Defaults to ["*"] which includes all operations (Create, Observe, Update, Delete). To orphan resources on deletion, use ["Create", "Observe", "Update"].
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - "*"
+                          - Create
+                          - Observe
+                          - Update
+                          - Delete
+                      default: ["*"]                      
                   required:
                     - id
               required:

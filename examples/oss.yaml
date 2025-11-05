@@ -4,9 +4,9 @@ metadata:
   name: configuration-observability-oss
   namespace: default
 spec:
-  compositeDeletePolicy: Foreground
   parameters:
     id: configuration-observability-oss
+    managementPolicies: ["*"]
     operators:
       prometheus:
-        version: "52.1.0"
+        version: "79.1.1"

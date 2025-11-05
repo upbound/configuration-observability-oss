@@ -1,16 +1,16 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: xosss.observe.platform.upbound.io
+  name: osss.observe.platform.upbound.io
 spec:
   compositeTypeRef:
     apiVersion: observe.platform.upbound.io/v1alpha1
-    kind: XOss
+    kind: Oss
   mode: Pipeline
   pipeline:
   - functionRef:
-      name: upbound-configuration-observability-ossxoss
-    step: xoss
+      name: upbound-configuration-observability-osscompose-oss
+    step: Compose-Oss-Resources
   - functionRef:
       name: crossplane-contrib-function-auto-ready
     step: auto-ready
