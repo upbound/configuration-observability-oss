@@ -38,13 +38,13 @@ _items = [
                     apiVersion: "pkg.crossplane.io/v1"
                     kind: "Configuration"
                     metadata.name: "configuration-aws-network"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-network:v0.24.0"
+                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-network:v2.0.0"
                 },
 
                 # AWS Network for EKS
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
-                    kind: "XNetwork"
+                    kind: "Network"
                     metadata.name: "configuration-observability-oss-network"
                     spec.parameters = {
                         id: "uptest-observability-oss-cluster"
