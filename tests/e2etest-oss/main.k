@@ -5,7 +5,8 @@ _items = [
     metav1alpha1.E2ETest{
         metadata.name: "e2etest-oss"
         spec= {
-            crossplane.autoUpgrade.channel: "Rapid"
+            crossplane.autoUpgrade.channel: "None"
+            crossplane.version = "2.0.2-up.5"
             defaultConditions: ["Ready"]
             manifests: [
                 # Create an Oss claim to test the observability stack
