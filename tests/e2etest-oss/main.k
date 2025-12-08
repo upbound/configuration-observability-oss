@@ -24,15 +24,14 @@ _items = [
                     }
                 }
             ]
-            initResources: []
             extraResources: [
                 # AWS EKS Configuration
-                {
-                    apiVersion: "pkg.crossplane.io/v1"
-                    kind: "Configuration"
-                    metadata.name: "configuration-aws-eks"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
-                }
+                # {
+                #     apiVersion: "pkg.crossplane.io/v1"
+                #     kind: "Configuration"
+                #     metadata.name: "configuration-aws-eks"
+                #     spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
+                # }
                 # AWS Network for EKS
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
