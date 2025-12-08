@@ -20,10 +20,6 @@ spec:
     kind: Function
     package: xpkg.upbound.io/crossplane-contrib/function-auto-ready
     version: '>=v0.4.0'
-  - apiVersion: pkg.crossplane.io/v1
-    kind: Configuration
-    package: xpkg.upbound.io/upbound/configuration-aws-eks
-    version: v2.0.0
   description: A Crossplane Observability Reference Configuration For Open Source
     Software Integrations
   license: Apache-2.0
