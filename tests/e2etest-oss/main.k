@@ -1,4 +1,5 @@
 import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
+import models.io.upbound.awsm.v1beta1 as awsv1beta1
 
 _items = [
     metav1alpha1.E2ETest {
@@ -89,18 +90,35 @@ _items = [
                     }
                 }
                 # AWS Provider Configuration using Upbound Web Identity
-                {
-                    apiVersion = "aws.m.upbound.io/v1beta1"
-                    kind = "ProviderConfig"
+                # {
+                #     apiVersion = "aws.m.upbound.io/v1beta1"
+                #     kind = "ProviderConfig"
+                #     metadata = {
+                #         name: "default"
+                #         namespace: "default"
+                #     }
+                #     spec.credentials = {
+                #         source = "Upbound"
+                #         upbound = {
+                #             webIdentity = {
+                #                 roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
+                #             }
+                #         }
+                #     }
+                # }
+                # Define the provider configuration
+                awsv1beta1.ProviderConfig {
                     metadata = {
-                        name: "default"
-                        namespace: "default"
+                        name = "default"
+                        namespace = "default"
                     }
-                    spec.credentials = {
-                        source = "Upbound"
-                        upbound = {
-                            webIdentity = {
-                                roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
+                    spec = {
+                        credentials = {
+                            source = "Upbound"
+                            upbound = {
+                                webIdentity = {
+                                    roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
+                                }
                             }
                         }
                     }
