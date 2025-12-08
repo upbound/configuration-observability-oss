@@ -81,7 +81,7 @@ _items = [
                         parameters = {
                             id: "uptest-observability-oss-cluster"
                             region: "us-west-1"
-                            version: "1.27"
+                            version: "1.34"
                             nodes = {
                                 count: 1
                                 instanceType: "t3.small"
