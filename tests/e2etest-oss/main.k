@@ -1,12 +1,11 @@
-
 import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
 
 _items = [
-    metav1alpha1.E2ETest{
+    metav1alpha1.E2ETest {
         metadata.name: "e2etest-oss"
-        spec= {
+        spec = {
             crossplane.autoUpgrade.channel: "None"
-            crossplane.version = "2.0.2-up.5"
+            crossplane.version = "2.1.3-up.1"
             defaultConditions: ["Ready"]
             manifests: [
                 # Create an Oss claim to test the observability stack
@@ -24,7 +23,8 @@ _items = [
                     }
                 }
             ]
-            initResources: [
+            initResources: []
+            extraResources: [
                 # AWS EKS Configuration
                 {
                     apiVersion: "pkg.crossplane.io/v1"
@@ -32,8 +32,6 @@ _items = [
                     metadata.name: "configuration-aws-eks"
                     spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
                 }
-            ]
-            extraResources: [
                 # AWS Network for EKS
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
@@ -51,17 +49,17 @@ _items = [
                                 availabilityZone: "us-west-1b"
                                 type: "public"
                                 cidrBlock: "192.168.0.0/18"
-                            },
+                            }
                             {
                                 availabilityZone: "us-west-1c"
                                 type: "public"
                                 cidrBlock: "192.168.64.0/18"
-                            },
+                            }
                             {
                                 availabilityZone: "us-west-1b"
                                 type: "private"
                                 cidrBlock: "192.168.128.0/18"
-                            },
+                            }
                             {
                                 availabilityZone: "us-west-1c"
                                 type: "private"
@@ -69,8 +67,7 @@ _items = [
                             }
                         ]
                     }
-                },
-
+                }
                 # EKS Cluster for testing observability stack
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
@@ -90,11 +87,10 @@ _items = [
                             }
                         }
                     }
-                },
-
+                }
                 # AWS Provider Configuration using Upbound Web Identity
                 {
-                    apiVersion ="aws.m.upbound.io/v1beta1"
+                    apiVersion = "aws.m.upbound.io/v1beta1"
                     kind = "ProviderConfig"
                     metadata = {
                         name: "default"
@@ -111,8 +107,9 @@ _items = [
                 }
             ]
             skipDelete: False
-            timeoutSeconds: 3600  # 60 minutes for AWS infrastructure + observability stack deployment
+            # 60 minutes for AWS infrastructure + observability stack deployment
+            timeoutSeconds: 3600
         }
     }
 ]
-items= _items
+items = _items
