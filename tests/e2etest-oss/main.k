@@ -30,22 +30,16 @@ _items = [
                     apiVersion: "pkg.crossplane.io/v1"
                     kind: "Configuration"
                     metadata.name: "configuration-aws-eks"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v0.21.0"
+                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
                 },
-
-                # AWS Network Configuration
-                {
-                    apiVersion: "pkg.crossplane.io/v1"
-                    kind: "Configuration"
-                    metadata.name: "configuration-aws-network"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-network:v2.0.0"
-                },
-
                 # AWS Network for EKS
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
                     kind: "Network"
-                    metadata.name: "configuration-observability-oss-network"
+                    metadata = {
+                        name: "configuration-observability-oss-network"
+                        namespace: "default"
+                    }
                     spec.parameters = {
                         id: "uptest-observability-oss-cluster"
                         region: "us-west-1"
@@ -78,8 +72,11 @@ _items = [
                 # EKS Cluster for testing observability stack
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
-                    kind: "XEKS"
-                    metadata.name: "configuration-observability-oss-eks"
+                    kind: "EKS"
+                    metadata = {
+                        name: "configuration-observability-oss-eks"
+                        namespace: "default"
+                    }
                     spec = {
                         parameters = {
                             id: "uptest-observability-oss-cluster"
@@ -90,18 +87,17 @@ _items = [
                                 instanceType: "t3.small"
                             }
                         }
-                        writeConnectionSecretToRef = {
-                            name: "configuration-observability-oss-kubeconfig"
-                            namespace: "upbound-system"
-                        }
                     }
                 },
 
                 # AWS Provider Configuration using Upbound Web Identity
                 {
-                    apiVersion ="aws.upbound.io/v1beta1"
+                    apiVersion ="aws.m.upbound.io/v1beta1"
                     kind = "ProviderConfig"
-                    metadata.name: "default"
+                    metadata = {
+                        name: "default"
+                        namespace: "default"
+                    }
                     spec.credentials = {
                         source = "Upbound"
                         upbound = {
