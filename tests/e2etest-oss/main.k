@@ -109,7 +109,6 @@ _items = [
                 awsv1beta1.ProviderConfig {
                     metadata = {
                         name = "default"
-                        namespace = "default"
                     }
                     spec = {
                         credentials = {
