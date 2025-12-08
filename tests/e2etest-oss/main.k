@@ -92,10 +92,11 @@ _items = [
 
                 # AWS Provider Configuration using Upbound Web Identity
                 {
-                    apiVersion ="aws.upbound.io/v1beta1"
+                    apiVersion ="aws.m.upbound.io/v1beta1"
                     kind = "ProviderConfig"
                     metadata = {
                         name: "default"
+                        namespace: "default"
                     }
                     spec.credentials = {
                         source = "Upbound"
