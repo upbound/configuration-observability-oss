@@ -31,6 +31,13 @@ _items = [
                     metadata.name: "configuration-aws-eks"
                     spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
                 }
+                ##TODO: Remove this temporary inclusion after the fix is released for forbidden error.
+                {
+                    apiVersion: "pkg.crossplane.io/v1"
+                    kind: "Configuration"
+                    metadata.name: "configuration-azure-database"
+                    spec.package: "xpkg.upbound.io/upbound/configuration-azure-database:v2.0.0"
+                }
                 # AWS Network for EKS
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
