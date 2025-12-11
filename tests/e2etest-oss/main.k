@@ -2,7 +2,7 @@ import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
 
 _items = [
     metav1alpha1.E2ETest {
-        metadata.name: "e2etest-oss"
+        metadata.name: "e2etest-compose-oss"
         spec = {
             crossplane.autoUpgrade.channel: "None"
             crossplane.version = "2.1.3-up.1"
@@ -31,13 +31,23 @@ _items = [
                     metadata.name: "configuration-aws-eks"
                     spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
                 }
-                ##TODO: Remove this temporary inclusion after the fix is released for forbidden error.
+                # AWS Provider Configuration using Upbound Web Identity
                 {
-                    apiVersion: "pkg.crossplane.io/v1"
-                    kind: "Configuration"
-                    metadata.name: "configuration-azure-database"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-azure-database:v2.0.0"
-                }
+                    apiVersion = "aws.m.upbound.io/v1beta1"
+                    kind = "ProviderConfig"
+                    metadata = {
+                        name: "default"
+                        namespace: "default"
+                    }
+                    spec.credentials = {
+                        source = "Upbound"
+                        upbound = {
+                            webIdentity = {
+                                roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
+                            }
+                        }
+                    }
+                }                
                 # AWS Network for EKS
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
@@ -94,22 +104,6 @@ _items = [
                         }
                     }
                 }
-                # AWS Provider Configuration using Upbound Web Identity
-                # {
-                #     apiVersion = "aws.upbound.io/v1beta1"
-                #     kind = "ProviderConfig"
-                #     metadata = {
-                #         name: "default"
-                #     }
-                #     spec.credentials = {
-                #         source = "Upbound"
-                #         upbound = {
-                #             webIdentity = {
-                #                 roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
-                #             }
-                #         }
-                #     }
-                # }
             ]
             skipDelete: False
             # 60 minutes for AWS infrastructure + observability stack deployment
