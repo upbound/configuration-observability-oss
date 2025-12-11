@@ -95,21 +95,21 @@ _items = [
                     }
                 }
                 # AWS Provider Configuration using Upbound Web Identity
-                {
-                    apiVersion = "aws.upbound.io/v1beta1"
-                    kind = "ProviderConfig"
-                    metadata = {
-                        name: "default"
-                    }
-                    spec.credentials = {
-                        source = "Upbound"
-                        upbound = {
-                            webIdentity = {
-                                roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
-                            }
-                        }
-                    }
-                }
+                # {
+                #     apiVersion = "aws.upbound.io/v1beta1"
+                #     kind = "ProviderConfig"
+                #     metadata = {
+                #         name: "default"
+                #     }
+                #     spec.credentials = {
+                #         source = "Upbound"
+                #         upbound = {
+                #             webIdentity = {
+                #                 roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
+                #             }
+                #         }
+                #     }
+                # }
             ]
             skipDelete: False
             # 60 minutes for AWS infrastructure + observability stack deployment
