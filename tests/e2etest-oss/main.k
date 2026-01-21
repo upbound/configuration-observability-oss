@@ -22,32 +22,6 @@ _items = [
                         managementPolicies: ["*"]
                     }
                 }
-            ]
-            extraResources: [
-                # AWS EKS Configuration
-                {
-                    apiVersion: "pkg.crossplane.io/v1"
-                    kind: "Configuration"
-                    metadata.name: "configuration-aws-eks"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
-                }
-                # AWS Provider Configuration using Upbound Web Identity
-                {
-                    apiVersion = "aws.m.upbound.io/v1beta1"
-                    kind = "ProviderConfig"
-                    metadata = {
-                        name: "default"
-                        namespace: "default"
-                    }
-                    spec.credentials = {
-                        source = "Upbound"
-                        upbound = {
-                            webIdentity = {
-                                roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
-                            }
-                        }
-                    }
-                }                
                 # AWS Network for EKS
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
@@ -100,6 +74,41 @@ _items = [
                             nodes = {
                                 count: 1
                                 instanceType: "t3.small"
+                            }
+                        }
+                    }
+                }
+            ]
+            initResources: [
+                # AWS EKS Configuration
+                {
+                    apiVersion: "pkg.crossplane.io/v1"
+                    kind: "Configuration"
+                    metadata.name: "configuration-aws-eks"
+                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
+                }
+                # Provider manifest workaround for rbac readiness
+                {
+                    apiVersion: "pkg.crossplane.io/v1"
+                    kind: "Provider"
+                    metadata.name: "upbound-provider-family-aws"
+                    spec.package: "xpkg.upbound.io/upbound/provider-family-aws:v2.3.0"
+                }
+            ]
+            extraResources: [
+                # AWS Provider Configuration using Upbound Web Identity
+                {
+                    apiVersion = "aws.m.upbound.io/v1beta1"
+                    kind = "ProviderConfig"
+                    metadata = {
+                        name: "default"
+                        namespace: "default"
+                    }
+                    spec.credentials = {
+                        source = "Upbound"
+                        upbound = {
+                            webIdentity = {
+                                roleARN = "arn:aws:iam::609897127049:role/solutions-e2e-provider-aws"
                             }
                         }
                     }
