@@ -1,11 +1,11 @@
 apiVersion: observe.platform.upbound.io/v1alpha1
-kind: XOss
+kind: Oss
 metadata:
-  name: test-xoss
+  name: test-oss
 spec:
   parameters:
     id: test-cluster
     operators:
       prometheus:
-        version: "52.1.0"
-    deletionPolicy: Delete
+        version: "79.1.1"
+    managementPolicies: ["*"]

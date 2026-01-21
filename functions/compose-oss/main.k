@@ -1,9 +1,9 @@
 
 import models.io.upbound.platform.observe.v1alpha1 as observev1alpha1
-import models.io.crossplane.helm.v1beta1 as helmv1beta1
-import models.io.crossplane.kubernetes.v1alpha2 as kubernetesv1alpha2
+import models.io.crossplane.helmm.v1beta1 as helmv1beta1
+import models.io.crossplane.kubernetesm.v1alpha1 as kubernetesv1alpha1
 
-oxr = observev1alpha1.XOss{**option("params").oxr}
+oxr = observev1alpha1.Oss{**option("params").oxr}
 
 _metadata = lambda name: str -> any {
     {
@@ -14,18 +14,20 @@ _metadata = lambda name: str -> any {
 
 # Extract parameters from the composite resource
 _id = oxr.spec?.parameters?.id
-_deletionPolicy = oxr.spec?.parameters?.deletionPolicy
-_prometheusVersion = oxr.spec?.parameters?.operators?.prometheus?.version or "52.1.0"
+_managementPolicy = oxr.spec?.parameters?.managementPolicies
+_prometheusVersion = oxr.spec?.parameters?.operators?.prometheus?.version or "79.1.1"
 
 # PodMonitor for Crossplane RBAC Manager
-_pod_monitor_rbac_manager = kubernetesv1alpha2.Object{
+_pod_monitor_rbac_manager = kubernetesv1alpha1.Object{
     metadata = _metadata("podMonitorCrossplaneRbacManager") | {
         labels = { type = "podMonitorCrossplaneRbacManager" }
     }
     spec = {
-        deletionPolicy = _deletionPolicy
-        providerConfigRef = { name = _id }
-        managementPolicies = ["*"]
+        managementPolicies = _managementPolicy
+        providerConfigRef = {
+            kind = "ProviderConfig"
+            name = _id
+        }
         watch = False
         forProvider = {
             manifest = {
@@ -51,14 +53,16 @@ _pod_monitor_rbac_manager = kubernetesv1alpha2.Object{
 }
 
 # PodMonitor for Crossplane
-_pod_monitor_crossplane = kubernetesv1alpha2.Object{
+_pod_monitor_crossplane = kubernetesv1alpha1.Object{
     metadata = _metadata("podMonitorCrossplane") | {
         labels = { type = "podMonitorCrossplane" }
     }
     spec = {
-        deletionPolicy = _deletionPolicy
-        providerConfigRef = { name = _id }
-        managementPolicies = ["*"]
+        managementPolicies = _managementPolicy
+        providerConfigRef = {
+            kind = "ProviderConfig"
+            name = _id
+        }
         watch = False
         forProvider = {
             manifest = {
@@ -84,14 +88,16 @@ _pod_monitor_crossplane = kubernetesv1alpha2.Object{
 }
 
 # PodMonitor for Crossplane Providers
-_pod_monitor_providers = kubernetesv1alpha2.Object{
+_pod_monitor_providers = kubernetesv1alpha1.Object{
     metadata = _metadata("podMonitorCrossplaneProviders") | {
         labels = { type = "podMonitorCrossplaneProviders" }
     }
     spec = {
-        deletionPolicy = _deletionPolicy
-        providerConfigRef = { name = _id }
-        managementPolicies = ["*"]
+        managementPolicies = _managementPolicy
+        providerConfigRef = {
+            kind = "ProviderConfig"
+            name = _id
+        }
         watch = False
         forProvider = {
             manifest = {
@@ -125,9 +131,11 @@ _prometheus_release = helmv1beta1.Release{
         }
     }
     spec = {
-        deletionPolicy = _deletionPolicy
-        providerConfigRef = { name = _id }
-        managementPolicies = ["*"]
+        managementPolicies = _managementPolicy
+        providerConfigRef = {
+            kind = "ProviderConfig"
+            name = _id
+        }
         rollbackLimit = 10
         forProvider = {
             chart = {
@@ -153,12 +161,12 @@ _prometheus_release = helmv1beta1.Release{
 
 # Usage resources
 _usage_rbac = {
-    apiVersion = "apiextensions.crossplane.io/v1alpha1"
+    apiVersion = "protection.crossplane.io/v1beta1"
     kind = "Usage"
     metadata = _metadata("usagePrometheusByPodMonitorCrossplaneRbacManager")
     spec = {
         by = {
-            apiVersion = "kubernetes.crossplane.io/v1alpha2"
+            apiVersion = "kubernetes.m.crossplane.io/v1alpha1"
             kind = "Object"
             resourceSelector = {
                 matchControllerRef = True
@@ -166,7 +174,7 @@ _usage_rbac = {
             }
         }
         of = {
-            apiVersion = "helm.crossplane.io/v1beta1"
+            apiVersion = "helm.m.crossplane.io/v1beta1"
             kind = "Release"
             resourceSelector = { matchControllerRef = True }
         }
@@ -174,12 +182,12 @@ _usage_rbac = {
 }
 
 _usage_crossplane = {
-    apiVersion = "apiextensions.crossplane.io/v1alpha1"
+    apiVersion = "protection.crossplane.io/v1beta1"
     kind = "Usage"
     metadata = _metadata("usagePrometheusByPodMonitorCrossplane")
     spec = {
         by = {
-            apiVersion = "kubernetes.crossplane.io/v1alpha2"
+            apiVersion = "kubernetes.m.crossplane.io/v1alpha1"
             kind = "Object"
             resourceSelector = {
                 matchControllerRef = True
@@ -187,7 +195,7 @@ _usage_crossplane = {
             }
         }
         of = {
-            apiVersion = "helm.crossplane.io/v1beta1"
+            apiVersion = "helm.m.crossplane.io/v1beta1"
             kind = "Release"
             resourceSelector = { matchControllerRef = True }
         }
@@ -195,12 +203,12 @@ _usage_crossplane = {
 }
 
 _usage_providers = {
-    apiVersion = "apiextensions.crossplane.io/v1alpha1"
+    apiVersion = "protection.crossplane.io/v1beta1"
     kind = "Usage"
     metadata = _metadata("usagePrometheusByPodMonitorProviders")
     spec = {
         by = {
-            apiVersion = "kubernetes.crossplane.io/v1alpha2"
+            apiVersion = "kubernetes.m.crossplane.io/v1alpha1"
             kind = "Object"
             resourceSelector = {
                 matchControllerRef = True
@@ -208,7 +216,7 @@ _usage_providers = {
             }
         }
         of = {
-            apiVersion = "helm.crossplane.io/v1beta1"
+            apiVersion = "helm.m.crossplane.io/v1beta1"
             kind = "Release"
             resourceSelector = { matchControllerRef = True }
         }

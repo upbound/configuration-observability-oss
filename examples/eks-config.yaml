@@ -1,0 +1,47 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: configuration-aws-eks
+spec:
+  package: xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0
+---
+apiVersion: aws.platform.upbound.io/v1alpha1
+kind: Network
+metadata:
+  name: test-cluster-network
+  namespace: default
+spec:
+  parameters:
+    id: test-cluster
+    region: eu-west-1
+    vpcCidrBlock: 192.168.0.0/16
+    subnets:
+      - availabilityZone: eu-west-1a
+        type: public
+        cidrBlock: 192.168.0.0/18
+      - availabilityZone: eu-west-1b
+        type: public
+        cidrBlock: 192.168.64.0/18
+      - availabilityZone: eu-west-1a
+        type: private
+        cidrBlock: 192.168.128.0/18
+      - availabilityZone: eu-west-1b
+        type: private
+        cidrBlock: 192.168.192.0/18    
+---
+apiVersion: aws.platform.upbound.io/v1alpha1
+kind: EKS
+metadata:
+  name: test-cluster
+  namespace: default
+spec:
+  parameters:
+    id: test-cluster
+    region: eu-west-1
+    version: "1.34"
+    accessConfig:
+      authenticationMode: API_AND_CONFIG_MAP
+      bootstrapClusterCreatorAdminPermissions: true
+    nodes:
+      count: 3
+      instanceType: t3.small

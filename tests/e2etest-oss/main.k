@@ -1,11 +1,11 @@
-
 import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
 
 _items = [
-    metav1alpha1.E2ETest{
-        metadata.name: "e2etest-xoss"
-        spec= {
-            crossplane.autoUpgrade.channel: "Rapid"
+    metav1alpha1.E2ETest {
+        metadata.name: "e2etest-compose-oss"
+        spec = {
+            crossplane.autoUpgrade.channel: "None"
+            crossplane.version = "2.1.3-up.1"
             defaultConditions: ["Ready"]
             manifests: [
                 # Create an Oss claim to test the observability stack
@@ -18,33 +18,18 @@ _items = [
                     }
                     spec.parameters = {
                         id: "uptest-observability-oss-cluster"
-                        operators.prometheus.version: "52.1.0"
-                        deletionPolicy: "Delete"
+                        operators.prometheus.version: "79.1.1"
+                        managementPolicies: ["*"]
                     }
                 }
-            ]
-            extraResources: [
-                # AWS EKS Configuration
-                {
-                    apiVersion: "pkg.crossplane.io/v1"
-                    kind: "Configuration"
-                    metadata.name: "configuration-aws-eks"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v0.18.2"
-                },
-
-                # AWS Network Configuration
-                {
-                    apiVersion: "pkg.crossplane.io/v1"
-                    kind: "Configuration"
-                    metadata.name: "configuration-aws-network"
-                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-network:v0.24.0"
-                },
-
                 # AWS Network for EKS
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
-                    kind: "XNetwork"
-                    metadata.name: "configuration-observability-oss-network"
+                    kind: "Network"
+                    metadata = {
+                        name: "configuration-observability-oss-network"
+                        namespace: "default"
+                    }
                     spec.parameters = {
                         id: "uptest-observability-oss-cluster"
                         region: "us-west-1"
@@ -54,17 +39,17 @@ _items = [
                                 availabilityZone: "us-west-1b"
                                 type: "public"
                                 cidrBlock: "192.168.0.0/18"
-                            },
+                            }
                             {
                                 availabilityZone: "us-west-1c"
                                 type: "public"
                                 cidrBlock: "192.168.64.0/18"
-                            },
+                            }
                             {
                                 availabilityZone: "us-west-1b"
                                 type: "private"
                                 cidrBlock: "192.168.128.0/18"
-                            },
+                            }
                             {
                                 availabilityZone: "us-west-1c"
                                 type: "private"
@@ -72,35 +57,53 @@ _items = [
                             }
                         ]
                     }
-                },
-
+                }
                 # EKS Cluster for testing observability stack
                 {
                     apiVersion: "aws.platform.upbound.io/v1alpha1"
-                    kind: "XEKS"
-                    metadata.name: "configuration-observability-oss-eks"
+                    kind: "EKS"
+                    metadata = {
+                        name: "configuration-observability-oss-eks"
+                        namespace: "default"
+                    }
                     spec = {
                         parameters = {
                             id: "uptest-observability-oss-cluster"
                             region: "us-west-1"
-                            version: "1.27"
+                            version: "1.34"
                             nodes = {
                                 count: 1
                                 instanceType: "t3.small"
                             }
                         }
-                        writeConnectionSecretToRef = {
-                            name: "configuration-observability-oss-kubeconfig"
-                            namespace: "upbound-system"
-                        }
                     }
-                },
-
+                }
+            ]
+            initResources: [
+                # AWS EKS Configuration
+                {
+                    apiVersion: "pkg.crossplane.io/v1"
+                    kind: "Configuration"
+                    metadata.name: "configuration-aws-eks"
+                    spec.package: "xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0"
+                }
+                # Provider manifest workaround for rbac readiness
+                {
+                    apiVersion: "pkg.crossplane.io/v1"
+                    kind: "Provider"
+                    metadata.name: "upbound-provider-family-aws"
+                    spec.package: "xpkg.upbound.io/upbound/provider-family-aws:v2.3.0"
+                }
+            ]
+            extraResources: [
                 # AWS Provider Configuration using Upbound Web Identity
                 {
-                    apiVersion ="aws.upbound.io/v1beta1"
+                    apiVersion = "aws.m.upbound.io/v1beta1"
                     kind = "ProviderConfig"
-                    metadata.name: "default"
+                    metadata = {
+                        name: "default"
+                        namespace: "default"
+                    }
                     spec.credentials = {
                         source = "Upbound"
                         upbound = {
@@ -112,8 +115,9 @@ _items = [
                 }
             ]
             skipDelete: False
-            timeoutSeconds: 3600  # 60 minutes for AWS infrastructure + observability stack deployment
+            # 60 minutes for AWS infrastructure + observability stack deployment
+            timeoutSeconds: 3600
         }
     }
 ]
-items= _items
+items = _items
