@@ -3,7 +3,7 @@ kind: Configuration
 metadata:
   name: configuration-aws-eks
 spec:
-  package: xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.0
+  package: xpkg.upbound.io/upbound/configuration-aws-eks:v2.0.1
 ---
 apiVersion: aws.platform.upbound.io/v1alpha1
 kind: Network
