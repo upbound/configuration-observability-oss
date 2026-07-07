@@ -3,7 +3,12 @@ import models.io.upbound.platform.observe.v1alpha1 as observev1alpha1
 import models.io.crossplane.helmm.v1beta1 as helmv1beta1
 import models.io.crossplane.kubernetesm.v1alpha1 as kubernetesv1alpha1
 
-oxr = observev1alpha1.Oss{**option("params").oxr}
+# Note: avoid casting the full OXR (e.g. Oss{**oxr}) because the
+# auto-generated model types status.conditions as a typed list which is
+# incompatible with the generic list Crossplane passes at runtime.
+# Instead, keep the raw OXR and cast only the sub-fields we need.
+oxr = option("params").oxr
+_params = observev1alpha1.Oss.spec.parameters{**oxr.spec?.parameters}
 
 _metadata = lambda name: str -> any {
     {
@@ -13,9 +18,9 @@ _metadata = lambda name: str -> any {
 }
 
 # Extract parameters from the composite resource
-_id = oxr.spec?.parameters?.id
-_managementPolicy = oxr.spec?.parameters?.managementPolicies
-_prometheusVersion = oxr.spec?.parameters?.operators?.prometheus?.version or "79.1.1"
+_id = _params?.id
+_managementPolicy = _params?.managementPolicies
+_prometheusVersion = _params?.operators?.prometheus?.version or "79.1.1"
 
 # PodMonitor for Crossplane RBAC Manager
 _pod_monitor_rbac_manager = kubernetesv1alpha1.Object{
